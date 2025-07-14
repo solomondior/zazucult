@@ -897,6 +897,14 @@
         });
       }
 
+      // Helper to robustly extract px values from style
+      function getPx(val, fallback) {
+        if (!val) return fallback;
+        if (typeof val === 'number') return val;
+        const n = parseFloat(val);
+        return isNaN(n) ? fallback : n;
+      }
+
       // 1. Draw background (solid or image)
       let bgPromise = Promise.resolve();
       const bgClass = frame.className;
@@ -957,28 +965,28 @@
         // Draw hat overlay (if visible)
         if (hatImg && hatImg.style.display !== 'none' && hatImg.src) {
           // Use current style for sizing/position
-          const w = parseInt(hatImg.style.width) || size;
-          const h = parseInt(hatImg.style.height) || size;
-          const x = parseInt(hatImg.style.left) || 0;
-          const y = parseInt(hatImg.style.top) || 0;
+          const w = getPx(hatImg.style.width, size);
+          const h = getPx(hatImg.style.height, size);
+          const x = getPx(hatImg.style.left, 0);
+          const y = getPx(hatImg.style.top, 0);
           return drawImageIfSet(hatImg, x, y, w, h);
         }
       }).then(() => {
         // Draw eyes overlay (if visible)
         if (eyesImg && eyesImg.style.display !== 'none' && eyesImg.src) {
-          const w = parseInt(eyesImg.style.width) || size;
-          const h = parseInt(eyesImg.style.height) || size;
-          const x = parseInt(eyesImg.style.left) || 0;
-          const y = parseInt(eyesImg.style.top) || 0;
+          const w = getPx(eyesImg.style.width, size);
+          const h = getPx(eyesImg.style.height, size);
+          const x = getPx(eyesImg.style.left, 0);
+          const y = getPx(eyesImg.style.top, 0);
           return drawImageIfSet(eyesImg, x, y, w, h);
         }
       }).then(() => {
         // Draw extras overlay (if visible)
         if (extrasImg && extrasImg.style.display !== 'none' && extrasImg.src) {
-          const w = parseInt(extrasImg.style.width) || size;
-          const h = parseInt(extrasImg.style.height) || size;
-          const x = parseInt(extrasImg.style.left) || 0;
-          const y = parseInt(extrasImg.style.top) || 0;
+          const w = getPx(extrasImg.style.width, size);
+          const h = getPx(extrasImg.style.height, size);
+          const x = getPx(extrasImg.style.left, 0);
+          const y = getPx(extrasImg.style.top, 0);
           return drawImageIfSet(extrasImg, x, y, w, h);
         }
       }).then(() => {
