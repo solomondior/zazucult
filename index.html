@@ -982,10 +982,13 @@
           return drawImageIfSet(extrasImg, x, y, w, h);
         }
       }).then(() => {
-        // Open the canvas as PNG in a new tab
+        // Open the canvas as PNG in a new tab with an <img> tag
         const dataUrl = canvas.toDataURL('image/png');
         console.log('Canvas data URL:', dataUrl);
-        window.open(dataUrl, '_blank');
+        const win = window.open();
+        win.document.write('<title>Your Zazu Image</title>');
+        win.document.write('<img src="' + dataUrl + '" style="max-width:100%;display:block;margin:auto;">');
+        win.document.close();
       });
     }
   </script>
