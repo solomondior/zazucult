@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAZU</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      background: url('Windows-XP-4K-modified-scaled.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .header {
+      width: 100%;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .title {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #222;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 8px rgba(255,255,255,0.3);
+    }
+    .ca-text {
+      font-size: 1.1rem;
+      color: #222;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .copy-btn {
+      background: #FFD600;
+      color: #222;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 28px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-bottom: 24px;
+      margin-top: 6px;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover {
+      background: #ffe066;
+    }
+    .btn-group {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+    .main-btn {
+      background: #fff;
+      color: #222;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: background 0.2s, color 0.2s;
+    }
+    .main-btn:hover {
+      background: #f0f0f0;
+    }
+    .image-section {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 80px;
+      margin-bottom: 80px;
+      width: 100%;
+    }
+    .image-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 420px;
+      width: 90vw;
+    }
+    .image-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .editor-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 60px 0 100px 0;
+    }
+    .editor-container {
+      background: #000;
+      border: 8px solid #fff;
+      border-radius: 12px;
+      padding: 32px 32px 32px 32px;
+      max-width: 1100px;
+      width: 95vw;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 700px;
+    }
+    .editor-card {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 300px;
+      margin-bottom: 32px;
+    }
+    .editor-card img {
+      max-width: 350px;
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+      border-radius: 4px;
+    }
+    .editor-btn-group {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+    .editor-btn {
+      background: #111;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      padding: 16px 64px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 1px;
+    }
+    .editor-btn:hover {
+      background: #fff;
+      color: #111;
+    }
+    .editor-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin: 36px 0 18px 0;
+      width: 100%;
+    }
+    .editor-tab {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    .editor-tab.active {
+      opacity: 1;
+      border-bottom: 2px solid #fff;
+    }
+    .editor-grid {
+      background: transparent;
+      border-radius: 0;
+      margin: 0 auto;
+      max-width: 100%;
+      width: 100%;
+      padding: 24px 0 0 0;
+      box-sizing: border-box;
+      margin-top: 12px;
+      margin-bottom: 0;
+      position: relative;
+      min-height: 420px;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+    .editor-grid-title {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .editor-grid-items {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      justify-items: center;
+    }
+    .editor-grid-item {
+      width: 120px;
+      height: 140px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .editor-grid-item.bg-white {
+      background: #fff;
+      border: 2px solid #eee;
+    }
+    .editor-card.white-bg {
+      background: #fff !important;
+    }
+    .zazu-frame {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      background: transparent;
+      border: 5px solid #fff;
+      box-sizing: border-box;
+      display: block;
+    }
+    .zazu-frame.bg-white {
+      background: #fff !important;
+    }
+    .zazu-frame.bg-stonks {
+      background: url('backgrounds/stonks.webp') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-il570 {
+      background: url('backgrounds/il_570xN.3774897538_agib.webp') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-palm {
+      background: url('backgrounds/palm-tree-on-tropical-beach-600nw-2154569741.webp') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-djnu1oa {
+      background: url('backgrounds/djnu1oa-147970c1-d3e3-4ade-9d6e-34d11ff71c31.png') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-csgo {
+      background: url('backgrounds/csgo-dust-2-map-portion.avif') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-thousand {
+      background: url('backgrounds/pngtree-financial-market-candlestick-chart-depicting-forex-trends-with-red-and-green-candles-photo-image_29955316.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-matrix {
+      background: url('backgrounds/matrix-5361690_1280.webp') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-photo1465 {
+      background: url('backgrounds/photo-1465101162946-4377e57745c3.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-440557281 {
+      background: url('backgrounds/440557281.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-1000yard {
+      background: url('backgrounds/i-give-up-can-someone-make-this-have-the-1000-yard-stare-v0-0xk9rgdol35e1.png') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-green {
+      background: url('backgrounds/green.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-mars1 {
+      background: url('backgrounds/mars].jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame img {
+      max-width: 100%;
+      max-height: 100%;
+      background: transparent !important;
+      border-radius: 4px;
+      position: relative;
+      /* z-index removed to allow inline z-index to control stacking */
+    }
+    #editor-eyes {
+      display: block !important;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+      background: rgba(255,0,0,0.1);
+    }
+    .eyes-8bit {
+      width: 300px !important;
+      height: 110px !important;
+      left: 55px !important;
+      top: 105px !important;
+      position: absolute;
+      /* border: 2px solid red; */ /* Remove debug border */
+      pointer-events: none;
+      z-index: 10;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+    }
+    .eyes-grid-option {
+      background: #fff;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 4px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .editor-grid-items#eyes-grid-items {
+      /* No overrides: use .editor-grid-items defaults for layout and spacing */
+    }
+    .editor-grid-item.eyes-grid-option {
+      /* Only keep border/background for clarity, but use .editor-grid-item sizing */
+      background: #fff;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">ZAZU</div>
+    <div class="ca-text">Contract address: <span id="ca">2CrzXGykCrwvVyondiHSC6cHWBrvdgULYQuGX26zazu</span></div>
+    <button class="copy-btn" onclick="copyCA()">Copy CA</button>
+    <div class="btn-group">
+      <button class="main-btn">OFFICIAL X</button>
+      <button class="main-btn">X-COMMUNITY</button>
+      <button class="main-btn">BUY</button>
+    </div>
+  </div>
+  <div class="image-section">
+    <div class="image-card">
+      <img src="zazu.png" alt="Zazu the cat" />
+    </div>
+  </div>
+  <div class="editor-section">
+    <div class="editor-container">
+      <div class="editor-card">
+        <div id="zazu-frame" class="zazu-frame">
+          <img id="editor-zazu" src="zazu.png" alt="Zazu the cat editor" style="position: relative;" />
+          <img id="editor-hat" src="" alt="Zazu hat overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 30;" />
+          <img id="editor-eyes" src="" alt="Zazu eyes overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 40;" />
+          <img id="editor-extras" src="" alt="Zazu extras overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 50;" />
+        </div>
+      </div>
+      <div class="editor-btn-group">
+        <button class="editor-btn" onclick="resetZazu()">RESET</button>
+        <button class="editor-btn" onclick="downloadZazu()">DOWNLOAD</button>
+      </div>
+      <div class="editor-tabs">
+        <div class="editor-tab active" data-tab="Background">Background</div>
+        <div class="editor-tab" data-tab="Eyes">Eyes</div>
+        <div class="editor-tab" data-tab="Hats">Hats</div>
+        <div class="editor-tab" data-tab="Extras">Extras</div>
+      </div>
+      <div class="editor-grid">
+        <div class="editor-grid-title" id="editor-grid-title">BACKGROUND</div>
+        <div class="editor-grid-items" id="editor-grid-items" style="display:block;">
+          <div class="editor-grid-item bg-white" id="bg-white-item"></div>
+          <div class="editor-grid-item" id="bg-stonks-item" style="background: url('backgrounds/stonks.webp') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-il570-item" style="background: url('backgrounds/il_570xN.3774897538_agib.webp') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-palm-item" style="background: url('backgrounds/palm-tree-on-tropical-beach-600nw-2154569741.webp') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-csgo-item" style="background: url('backgrounds/csgo-dust-2-map-portion.avif') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-thousand-item" style="background: url('backgrounds/pngtree-financial-market-candlestick-chart-depicting-forex-trends-with-red-and-green-candles-photo-image_29955316.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-matrix-item" style="background: url('backgrounds/matrix-5361690_1280.webp') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-photo1465-item" style="background: url('backgrounds/photo-1465101162946-4377e57745c3.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-440557281-item" style="background: url('backgrounds/440557281.jpg') center center / cover no-repeat;"></div>
+          <!-- Only one instance of 1000 yard stare image below -->
+          <div class="editor-grid-item" id="bg-1000yard-item" style="background: url('backgrounds/i-give-up-can-someone-make-this-have-the-1000-yard-stare-v0-0xk9rgdol35e1.png') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-green-item" style="background: url('backgrounds/green.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-mars1-item" style="background: url('backgrounds/mars].jpg') center center / cover no-repeat;"></div>
+        </div>
+        <!-- Eyes grid, hidden by default -->
+        <div class="editor-grid-items" id="eyes-grid-items" style="display:none;">
+          <div class="editor-grid-item eyes-grid-option" id="eyes-8bit-item" style="background: url('eyes/8bit-glasses.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="eyes-shuttershades-item" style="background: url('eyes/png-transparent-white-eyewear-shutter-shades-aviator-sunglasses-shutter-s-text-monochrome-glasses-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="eyes-cloutgoggles-item" style="background: url('eyes/7-79919_cartoon-clout-goggles-transparent-hd-png-download-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="eyes-vector-item" style="background: url('eyes/pngtree-eye-glass-vector-png-image_4485520-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="eyes-sport-item" style="background: url('eyes/pngtree-sport-glasses-mockup-mock-up-picture-image_7736765-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="eyes-clipart-item" style="background: url('eyes/sunglasses-clipart-design-illustration-free-png-removebg-preview (1).png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="eyes-rbvajfl-item" style="background: url('eyes/rBVaJFl_9t-AYmVHAAEE3Xj8F_Q250-removebg-preview.png') center center / contain no-repeat;"></div>
+        </div>
+        <!-- Hats grid, hidden by default -->
+        <div class="editor-grid-items" id="hats-grid-items" style="display:none;">
+          <div class="editor-grid-item eyes-grid-option" id="hat-armyhelmet-item" style="background: url('hats/548-5487748_35-ww2-army-helmet-png-transparent-png-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-beanie-item" style="background: url('hats/png-transparent-knit-cap-woolen-beanie-beanie-s-product-cap-clothing-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-cowboy-item" style="background: url('hats/pngtree-male-cowboy-hat-with-front-tie-rope-png-image_3053578-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-viking-item" style="background: url('hats/viking-helmets-with-transparent-cutout-free-png-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-maga-item" style="background: url('hats/MAGA-45-47-Hat-Red-Front-1-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-yankees-item" style="background: url('hats/761-7612333_new-era-new-york-yankees-black-white-fitted-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-random-item" style="background: url('hats/4d13a77fb621ce038157d0177ab692a5-removebg-preview.png') center center / contain no-repeat;"></div>
+        </div>
+        <!-- Extras grid, hidden by default -->
+        <div class="editor-grid-items" id="extras-grid-items" style="display:none;">
+          <div class="editor-grid-item eyes-grid-option" id="extras-chain-item" style="background: url('extras/goldchain.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-blazer-item" style="background: url('extras/suit.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-money-item" style="background: url('extras/stack-money-on-white-backround-260nw-71606644-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-image-item" style="background: url('extras/images-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-28de-item" style="background: url('extras/28de83405317503236d1625e11031acc-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-screenshot-item" style="background: url('extras/Screenshot_2025-07-14_181558-removebg-preview.png') center center / contain no-repeat;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Move script to here, just before </body> -->
+  <script>
+    function copyCA() {
+      const ca = document.getElementById('ca').innerText;
+      navigator.clipboard.writeText(ca);
+    }
+    // Tab switching logic
+    document.querySelectorAll('.editor-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.editor-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const tabName = this.getAttribute('data-tab');
+        document.getElementById('editor-grid-title').textContent = tabName.toUpperCase();
+        // Show/hide grids
+        if(tabName === 'Background') {
+          document.getElementById('editor-grid-items').style.display = '';
+          document.getElementById('eyes-grid-items').style.display = 'none';
+          document.getElementById('hats-grid-items').style.display = 'none';
+          document.getElementById('extras-grid-items').style.display = 'none';
+        } else if(tabName === 'Eyes') {
+          document.getElementById('editor-grid-items').style.display = 'none';
+          document.getElementById('eyes-grid-items').style.display = '';
+          document.getElementById('hats-grid-items').style.display = 'none';
+          document.getElementById('extras-grid-items').style.display = 'none';
+        } else if(tabName === 'Hats') {
+          document.getElementById('editor-grid-items').style.display = 'none';
+          document.getElementById('eyes-grid-items').style.display = 'none';
+          document.getElementById('hats-grid-items').style.display = '';
+          document.getElementById('extras-grid-items').style.display = 'none';
+        } else if(tabName === 'Extras') {
+          document.getElementById('editor-grid-items').style.display = 'none';
+          document.getElementById('eyes-grid-items').style.display = 'none';
+          document.getElementById('hats-grid-items').style.display = 'none';
+          document.getElementById('extras-grid-items').style.display = '';
+        } else {
+          document.getElementById('editor-grid-items').style.display = '';
+          document.getElementById('eyes-grid-items').style.display = 'none';
+          document.getElementById('hats-grid-items').style.display = 'none';
+          document.getElementById('extras-grid-items').style.display = 'none';
+        }
+      });
+    });
+    // Eyes: 8 bit glasses click handler
+    document.getElementById('eyes-8bit-item').addEventListener('click', function() {
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = 'eyes/8bit-glasses.png';
+      eyesImg.style.display = '';
+      eyesImg.removeAttribute('class');
+      eyesImg.style.position = 'absolute';
+      eyesImg.style.width = '300px';
+      eyesImg.style.height = '110px';
+      eyesImg.style.left = '55px';
+      eyesImg.style.top = '105px';
+      eyesImg.style.pointerEvents = 'none';
+      eyesImg.style.zIndex = '10';
+      eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Eyes: shutter shades click handler
+    document.getElementById('eyes-shuttershades-item').addEventListener('click', function() {
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = 'eyes/png-transparent-white-eyewear-shutter-shades-aviator-sunglasses-shutter-s-text-monochrome-glasses-removebg-preview.png';
+      eyesImg.style.display = '';
+      eyesImg.removeAttribute('class');
+      eyesImg.style.position = 'absolute';
+      eyesImg.style.width = '190px';
+      eyesImg.style.height = '80px';
+      eyesImg.style.left = '72px';
+      eyesImg.style.top = '130px';
+      eyesImg.style.pointerEvents = 'none';
+      eyesImg.style.zIndex = '10';
+      eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Eyes: clout goggles click handler
+    document.getElementById('eyes-cloutgoggles-item').addEventListener('click', function() {
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = 'eyes/7-79919_cartoon-clout-goggles-transparent-hd-png-download-removebg-preview.png';
+      eyesImg.style.display = '';
+      eyesImg.removeAttribute('class');
+      eyesImg.style.position = 'absolute';
+      eyesImg.style.width = '220px';
+      eyesImg.style.height = '90px';
+      eyesImg.style.left = '55px';
+      eyesImg.style.top = '125px';
+      eyesImg.style.pointerEvents = 'none';
+      eyesImg.style.zIndex = '10';
+      eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Eyes: vector glasses click handler
+    document.getElementById('eyes-vector-item').addEventListener('click', function() {
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = 'eyes/pngtree-eye-glass-vector-png-image_4485520-removebg-preview.png';
+      eyesImg.style.display = '';
+      eyesImg.removeAttribute('class');
+      eyesImg.style.position = 'absolute';
+      eyesImg.style.width = '220px';
+      eyesImg.style.height = '115px';
+      eyesImg.style.left = '55px';
+      eyesImg.style.top = '115px';
+      eyesImg.style.pointerEvents = 'none';
+      eyesImg.style.zIndex = '10';
+      eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Eyes: sport glasses click handler
+    document.getElementById('eyes-sport-item').addEventListener('click', function() {
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = 'eyes/pngtree-sport-glasses-mockup-mock-up-picture-image_7736765-removebg-preview.png';
+      eyesImg.style.display = '';
+      eyesImg.removeAttribute('class');
+      eyesImg.style.position = 'absolute';
+      eyesImg.style.width = '264px'; // 220px * 1.2
+      eyesImg.style.height = '144px'; // 120px * 1.2
+      eyesImg.style.left = '35px';
+      eyesImg.style.top = '97px';
+      eyesImg.style.pointerEvents = 'none';
+      eyesImg.style.zIndex = '15';
+      eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Eyes: clipart sunglasses click handler
+    document.getElementById('eyes-clipart-item').addEventListener('click', function() {
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = "eyes/sunglasses-clipart-design-illustration-free-png-removebg-preview (1).png";
+      eyesImg.style.display = '';
+      eyesImg.removeAttribute('class');
+      eyesImg.style.position = 'absolute';
+      eyesImg.style.width = '200px';
+      eyesImg.style.height = '70px';
+      eyesImg.style.left = '65px';
+      eyesImg.style.top = '140px';
+      eyesImg.style.pointerEvents = 'none';
+      eyesImg.style.zIndex = '10';
+      eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Eyes: rbvajfl sunglasses click handler
+    document.getElementById('eyes-rbvajfl-item').addEventListener('click', function() {
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = 'eyes/rBVaJFl_9t-AYmVHAAEE3Xj8F_Q250-removebg-preview.png';
+      eyesImg.style.display = '';
+      eyesImg.removeAttribute('class');
+      eyesImg.style.position = 'absolute';
+      eyesImg.style.width = '2500px';
+      eyesImg.style.height = '110px';
+      eyesImg.style.left = '0px';
+      eyesImg.style.top = '115px';
+      eyesImg.style.pointerEvents = 'none';
+      eyesImg.style.zIndex = '10';
+      eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Add click handler for first background (white)
+    document.getElementById('bg-white-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-white');
+      zazuFrame.classList.remove('bg-stonks');
+      zazuFrame.classList.remove('bg-il570');
+      zazuFrame.classList.remove('bg-palm');
+      zazuFrame.classList.remove('bg-djnu1oa');
+      zazuFrame.classList.remove('bg-csgo');
+      zazuFrame.classList.remove('bg-thousand');
+      zazuFrame.classList.remove('bg-1000yard');
+      zazuFrame.classList.remove('bg-matrix');
+      zazuFrame.classList.remove('bg-photo1465');
+      zazuFrame.classList.remove('bg-440557281');
+      zazuFrame.classList.remove('bg-green');
+      zazuFrame.classList.remove('bg-mars');
+      zazuFrame.classList.remove('bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    // Add click handler for second background (stonks)
+    document.getElementById('bg-stonks-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-stonks');
+      zazuFrame.classList.remove('bg-white');
+      zazuFrame.classList.remove('bg-il570');
+      zazuFrame.classList.remove('bg-palm');
+      zazuFrame.classList.remove('bg-djnu1oa');
+      zazuFrame.classList.remove('bg-csgo');
+      zazuFrame.classList.remove('bg-thousand');
+      zazuFrame.classList.remove('bg-1000yard');
+      zazuFrame.classList.remove('bg-matrix');
+      zazuFrame.classList.remove('bg-photo1465');
+      zazuFrame.classList.remove('bg-440557281');
+      zazuFrame.classList.remove('bg-green');
+      zazuFrame.classList.remove('bg-mars');
+      zazuFrame.classList.remove('bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    // Add click handlers for all new backgrounds
+    document.getElementById('bg-il570-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-il570');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-palm-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-palm');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-csgo-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-csgo');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-thousand-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-thousand');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-1000yard-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-1000yard');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-matrix-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-matrix');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-photo1465-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-photo1465');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-440557281','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-440557281-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-440557281');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-green','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-green-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-green');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-mars','bg-mars1');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-mars1-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    // Hats: army helmet click handler
+    document.getElementById('hat-armyhelmet-item').addEventListener('click', function() {
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = 'hats/548-5487748_35-ww2-army-helmet-png-transparent-png-removebg-preview.png';
+      hatImg.style.display = '';
+      hatImg.style.position = 'absolute';
+      hatImg.style.width = '400px';
+      hatImg.style.height = '160px';
+      hatImg.style.left = '0px';
+      hatImg.style.top = '75px';
+      hatImg.style.pointerEvents = 'none';
+      hatImg.style.zIndex = '20';
+      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Hats: beanie click handler
+    document.getElementById('hat-beanie-item').addEventListener('click', function() {
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = 'hats/png-transparent-knit-cap-woolen-beanie-beanie-s-product-cap-clothing-removebg-preview.png';
+      hatImg.style.display = '';
+      hatImg.style.position = 'absolute';
+      hatImg.style.width = '238px';
+      hatImg.style.height = '120px';
+      hatImg.style.left = '60px';
+      hatImg.style.top = '45px';
+      hatImg.style.pointerEvents = 'none';
+      hatImg.style.zIndex = '20';
+      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Hats: cowboy click handler
+    document.getElementById('hat-cowboy-item').addEventListener('click', function() {
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = 'hats/pngtree-male-cowboy-hat-with-front-tie-rope-png-image_3053578-removebg-preview.png';
+      hatImg.style.display = '';
+      hatImg.style.position = 'absolute';
+      hatImg.style.width = '400px';
+      hatImg.style.height = '150px';
+      hatImg.style.left = '0px';
+      hatImg.style.top = '45px';
+      hatImg.style.pointerEvents = 'none';
+      hatImg.style.zIndex = '20';
+      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Hats: viking click handler
+    document.getElementById('hat-viking-item').addEventListener('click', function() {
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = 'hats/viking-helmets-with-transparent-cutout-free-png-removebg-preview.png';
+      hatImg.style.display = '';
+      hatImg.style.position = 'absolute';
+      hatImg.style.width = '400px';
+      hatImg.style.height = '195px';
+      hatImg.style.left = '0px';
+      hatImg.style.top = '0px';
+      hatImg.style.pointerEvents = 'none';
+      hatImg.style.zIndex = '20';
+      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Hats: maga click handler
+    document.getElementById('hat-maga-item').addEventListener('click', function() {
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = 'hats/MAGA-45-47-Hat-Red-Front-1-removebg-preview.png';
+      hatImg.style.display = '';
+      hatImg.style.position = 'absolute';
+      hatImg.style.width = '290px';
+      hatImg.style.height = '180px';
+      hatImg.style.left = '25px';
+      hatImg.style.top = '5px';
+      hatImg.style.pointerEvents = 'none';
+      hatImg.style.zIndex = '20';
+      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Hats: yankees click handler
+    document.getElementById('hat-yankees-item').addEventListener('click', function() {
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = 'hats/761-7612333_new-era-new-york-yankees-black-white-fitted-removebg-preview.png';
+      hatImg.style.display = '';
+      hatImg.style.position = 'absolute';
+      hatImg.style.width = '300px';
+      hatImg.style.height = '150px';
+      hatImg.style.left = '18px';
+      hatImg.style.top = '30px';
+      hatImg.style.pointerEvents = 'none';
+      hatImg.style.zIndex = '20';
+      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Hats: random click handler
+    document.getElementById('hat-random-item').addEventListener('click', function() {
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = 'hats/4d13a77fb621ce038157d0177ab692a5-removebg-preview.png';
+      hatImg.style.display = '';
+      hatImg.style.position = 'absolute';
+      hatImg.style.width = '400px';
+      hatImg.style.height = '150px';
+      hatImg.style.left = '0px';
+      hatImg.style.top = '25px';
+      hatImg.style.pointerEvents = 'none';
+      hatImg.style.zIndex = '20';
+      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: thug life chain
+    document.getElementById('extras-chain-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/goldchain.png';
+      extrasImg.style.display = '';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '210px';
+      extrasImg.style.height = '100px';
+      extrasImg.style.left = '60px';
+      extrasImg.style.top = '220px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: suit
+    document.getElementById('extras-blazer-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/suit.png';
+      extrasImg.style.display = '';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '350px';
+      extrasImg.style.height = '130px';
+      extrasImg.style.left = '0px';
+      extrasImg.style.top = '215px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: stack of money
+    document.getElementById('extras-money-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/stack-money-on-white-backround-260nw-71606644-removebg-preview.png';
+      extrasImg.style.display = '';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '220px';
+      extrasImg.style.height = '80px';
+      extrasImg.style.left = '100px';
+      extrasImg.style.top = '260px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: images-removebg-preview
+    document.getElementById('extras-image-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/images-removebg-preview.png';
+      extrasImg.style.display = '';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '120px';
+      extrasImg.style.height = '86px';
+      extrasImg.style.left = '107px';
+      extrasImg.style.top = '255px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: 28de8340... item
+    document.getElementById('extras-28de-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/28de83405317503236d1625e11031acc-removebg-preview.png';
+      extrasImg.style.display = '';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '120px';
+      extrasImg.style.height = '90px';
+      extrasImg.style.left = '165px';
+      extrasImg.style.top = '242px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: screenshot item
+    document.getElementById('extras-screenshot-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/Screenshot_2025-07-14_181558-removebg-preview.png';
+      extrasImg.style.display = '';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '120px';
+      extrasImg.style.height = '120px';
+      extrasImg.style.left = '115px';
+      extrasImg.style.top = '200px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    function resetZazu() {
+      document.getElementById('editor-zazu').src = 'zazu.png';
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.remove('bg-white');
+      zazuFrame.classList.remove('bg-stonks');
+      zazuFrame.classList.remove('bg-il570');
+      zazuFrame.classList.remove('bg-palm');
+      zazuFrame.classList.remove('bg-djnu1oa');
+      zazuFrame.classList.remove('bg-csgo');
+      zazuFrame.classList.remove('bg-thousand');
+      zazuFrame.classList.remove('bg-1000yard');
+      zazuFrame.classList.remove('bg-matrix');
+      zazuFrame.classList.remove('bg-photo1465');
+      zazuFrame.classList.remove('bg-440557281');
+      zazuFrame.classList.remove('bg-green');
+      zazuFrame.classList.remove('bg-mars');
+      zazuFrame.classList.remove('bg-mars1');
+      const eyesImg = document.getElementById('editor-eyes');
+      eyesImg.src = '';
+      eyesImg.style.display = 'none';
+      eyesImg.className = '';
+      const hatImg = document.getElementById('editor-hat');
+      hatImg.src = '';
+      hatImg.style.display = 'none';
+      hatImg.className = '';
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = '';
+      extrasImg.style.display = 'none';
+      extrasImg.className = '';
+    }
+    function downloadZazu() {
+      const frame = document.getElementById('zazu-frame');
+      const canvas = document.createElement('canvas');
+      const size = 350;
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Helper to draw an image if src is set
+      function drawImageIfSet(img, dx=0, dy=0, dw=size, dh=size) {
+        return new Promise(resolve => {
+          if (!img || !img.src || img.src === window.location.href || img.src === '') return resolve();
+          console.log('Trying to draw:', img.src);
+          const image = new window.Image();
+          image.crossOrigin = 'anonymous';
+          image.onload = function() {
+            ctx.drawImage(image, dx, dy, dw, dh);
+            resolve();
+          };
+          image.onerror = resolve;
+          image.src = img.src;
+        });
+      }
+
+      // 1. Draw background (solid or image)
+      let bgPromise = Promise.resolve();
+      const bgClass = frame.className;
+      if (bgClass.includes('bg-white')) {
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, size, size);
+      } else {
+        // Check for a background image class
+        const bgMap = {
+          'bg-stonks': 'backgrounds/stonks.webp',
+          'bg-il570': 'backgrounds/il_570xN.3774897538_agib.webp',
+          'bg-palm': 'backgrounds/palm-tree-on-tropical-beach-600nw-2154569741.webp',
+          'bg-djnu1oa': 'backgrounds/djnu1oa-147970c1-d3e3-4ade-9d6e-34d11ff71c31.png',
+          'bg-csgo': 'backgrounds/csgo-dust-2-map-portion.avif',
+          'bg-thousand': 'backgrounds/pngtree-financial-market-candlestick-chart-depicting-forex-trends-with-red-and-green-candles-photo-image_29955316.jpg',
+          'bg-1000yard': 'backgrounds/i-give-up-can-someone-make-this-have-the-1000-yard-stare-v0-0xk9rgdol35e1.png',
+          'bg-matrix': 'backgrounds/matrix-5361690_1280.webp',
+          'bg-photo1465': 'backgrounds/photo-1465101162946-4377e57745c3.jpg',
+          'bg-440557281': 'backgrounds/440557281.jpg',
+          'bg-green': 'backgrounds/green.jpg',
+          'bg-mars': 'backgrounds/mars].jpg',
+          'bg-mars1': 'backgrounds/mars].jpg',
+        };
+        let found = false;
+        for (const key in bgMap) {
+          if (bgClass.includes(key)) {
+            found = true;
+            const bgImg = new window.Image();
+            bgImg.crossOrigin = 'anonymous';
+            bgPromise = new Promise(resolve => {
+              bgImg.onload = function() {
+                ctx.drawImage(bgImg, 0, 0, size, size);
+                resolve();
+              };
+              bgImg.onerror = resolve;
+              bgImg.src = bgMap[key];
+            });
+            break;
+          }
+        }
+        if (!found) {
+          // Default to white if no background
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, size, size);
+        }
+      }
+
+      // 2. Draw overlays in order: zazu, hat, eyes, extras
+      const zazuImg = document.getElementById('editor-zazu');
+      const hatImg = document.getElementById('editor-hat');
+      const eyesImg = document.getElementById('editor-eyes');
+      const extrasImg = document.getElementById('editor-extras');
+
+      bgPromise.then(() => {
+        // Draw Zazu (always full size, centered)
+        return drawImageIfSet(zazuImg);
+      }).then(() => {
+        // Draw hat overlay (if visible)
+        if (hatImg && hatImg.style.display !== 'none' && hatImg.src) {
+          // Use current style for sizing/position
+          const w = parseInt(hatImg.style.width) || size;
+          const h = parseInt(hatImg.style.height) || size;
+          const x = parseInt(hatImg.style.left) || 0;
+          const y = parseInt(hatImg.style.top) || 0;
+          return drawImageIfSet(hatImg, x, y, w, h);
+        }
+      }).then(() => {
+        // Draw eyes overlay (if visible)
+        if (eyesImg && eyesImg.style.display !== 'none' && eyesImg.src) {
+          const w = parseInt(eyesImg.style.width) || size;
+          const h = parseInt(eyesImg.style.height) || size;
+          const x = parseInt(eyesImg.style.left) || 0;
+          const y = parseInt(eyesImg.style.top) || 0;
+          return drawImageIfSet(eyesImg, x, y, w, h);
+        }
+      }).then(() => {
+        // Draw extras overlay (if visible)
+        if (extrasImg && extrasImg.style.display !== 'none' && extrasImg.src) {
+          const w = parseInt(extrasImg.style.width) || size;
+          const h = parseInt(extrasImg.style.height) || size;
+          const x = parseInt(extrasImg.style.left) || 0;
+          const y = parseInt(extrasImg.style.top) || 0;
+          return drawImageIfSet(extrasImg, x, y, w, h);
+        }
+      }).then(() => {
+        // Open the canvas as PNG in a new tab
+        const dataUrl = canvas.toDataURL('image/png');
+        console.log('Canvas data URL:', dataUrl);
+        window.open(dataUrl, '_blank');
+      });
+    }
+  </script>
+</body>
+</html> 
