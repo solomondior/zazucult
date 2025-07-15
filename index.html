@@ -897,12 +897,19 @@
         });
       }
 
-      // Helper to robustly extract px values from style
-      function getPx(val, fallback) {
-        if (!val) return fallback;
-        if (typeof val === 'number') return val;
-        const n = parseFloat(val);
-        return isNaN(n) ? fallback : n;
+      // Helper to get overlay rect relative to frame, scaled to canvas
+      function getOverlayRect(img, frame) {
+        if (!img || img.style.display === 'none') return null;
+        const imgRect = img.getBoundingClientRect();
+        const frameRect = frame.getBoundingClientRect();
+        const scaleX = size / frameRect.width;
+        const scaleY = size / frameRect.height;
+        return {
+          x: (imgRect.left - frameRect.left) * scaleX,
+          y: (imgRect.top - frameRect.top) * scaleY,
+          w: imgRect.width * scaleX,
+          h: imgRect.height * scaleY
+        };
       }
 
       // 1. Draw background (solid or image)
@@ -964,30 +971,26 @@
       }).then(() => {
         // Draw hat overlay (if visible)
         if (hatImg && hatImg.style.display !== 'none' && hatImg.src) {
-          // Use current style for sizing/position
-          const w = getPx(hatImg.style.width, size);
-          const h = getPx(hatImg.style.height, size);
-          const x = getPx(hatImg.style.left, 0);
-          const y = getPx(hatImg.style.top, 0);
-          return drawImageIfSet(hatImg, x, y, w, h);
+          const rect = getOverlayRect(hatImg, frame);
+          if (rect) {
+            return drawImageIfSet(hatImg, rect.x, rect.y, rect.w, rect.h);
+          }
         }
       }).then(() => {
         // Draw eyes overlay (if visible)
         if (eyesImg && eyesImg.style.display !== 'none' && eyesImg.src) {
-          const w = getPx(eyesImg.style.width, size);
-          const h = getPx(eyesImg.style.height, size);
-          const x = getPx(eyesImg.style.left, 0);
-          const y = getPx(eyesImg.style.top, 0);
-          return drawImageIfSet(eyesImg, x, y, w, h);
+          const rect = getOverlayRect(eyesImg, frame);
+          if (rect) {
+            return drawImageIfSet(eyesImg, rect.x, rect.y, rect.w, rect.h);
+          }
         }
       }).then(() => {
         // Draw extras overlay (if visible)
         if (extrasImg && extrasImg.style.display !== 'none' && extrasImg.src) {
-          const w = getPx(extrasImg.style.width, size);
-          const h = getPx(extrasImg.style.height, size);
-          const x = getPx(extrasImg.style.left, 0);
-          const y = getPx(extrasImg.style.top, 0);
-          return drawImageIfSet(extrasImg, x, y, w, h);
+          const rect = getOverlayRect(extrasImg, frame);
+          if (rect) {
+            return drawImageIfSet(extrasImg, rect.x, rect.y, rect.w, rect.h);
+          }
         }
       }).then(() => {
         // Open the canvas as PNG in a new tab with an <img> tag
