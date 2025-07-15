@@ -197,7 +197,7 @@
       position: relative;
       min-height: 420px;
       max-height: 520px;
-      overflow-y: auto;
+      overflow-y: hidden;
     }
     .editor-grid-title {
       color: #fff;
@@ -278,6 +278,9 @@
     .zazu-frame.bg-mars1 {
       background: url('backgrounds/mars].jpg') center center / cover no-repeat !important;
     }
+    .zazu-frame.bg-us15 {
+      background: url('backgrounds/US-15.jpg') center center / cover no-repeat !important;
+    }
     .zazu-frame img {
       max-width: 100%;
       max-height: 100%;
@@ -286,8 +289,13 @@
       position: relative;
       /* z-index removed to allow inline z-index to control stacking */
     }
+    #editor-eyes[style*="display: none"],
+    #editor-hat[style*="display: none"],
+    #editor-extras[style*="display: none"] {
+      border: none !important;
+      background: none !important;
+    }
     #editor-eyes {
-      display: block !important;
       position: absolute;
       left: 0;
       top: 0;
@@ -343,7 +351,7 @@
   </div>
   <div class="image-section">
     <div class="image-card">
-      <img src="zazu.png" alt="Zazu the cat" />
+      <img src="zazucollage.gif" alt="Zazu the cat" />
     </div>
   </div>
   <div class="editor-section">
@@ -382,6 +390,7 @@
           <div class="editor-grid-item" id="bg-1000yard-item" style="background: url('backgrounds/i-give-up-can-someone-make-this-have-the-1000-yard-stare-v0-0xk9rgdol35e1.png') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-green-item" style="background: url('backgrounds/green.jpg') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-mars1-item" style="background: url('backgrounds/mars].jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-us15-item" style="background: url('backgrounds/US-15.jpg') center center / cover no-repeat;"></div>
         </div>
         <!-- Eyes grid, hidden by default -->
         <div class="editor-grid-items" id="eyes-grid-items" style="display:none;">
@@ -411,6 +420,8 @@
           <div class="editor-grid-item eyes-grid-option" id="extras-image-item" style="background: url('extras/images-removebg-preview.png') center center / contain no-repeat;"></div>
           <div class="editor-grid-item eyes-grid-option" id="extras-28de-item" style="background: url('extras/28de83405317503236d1625e11031acc-removebg-preview.png') center center / contain no-repeat;"></div>
           <div class="editor-grid-item eyes-grid-option" id="extras-screenshot-item" style="background: url('extras/Screenshot_2025-07-14_181558-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-108-item" style="background: url('extras/108-1089650_mlg-quickscope-png-duty-modern-warfare-2-intervention-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-smoke-item" style="background: url('extras/smoke.png') center center / contain no-repeat;"></div>
         </div>
       </div>
     </div>
@@ -461,7 +472,7 @@
     document.getElementById('eyes-8bit-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = 'eyes/8bit-glasses.png';
-      eyesImg.style.display = '';
+      eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '300px';
@@ -476,7 +487,7 @@
     document.getElementById('eyes-shuttershades-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = 'eyes/png-transparent-white-eyewear-shutter-shades-aviator-sunglasses-shutter-s-text-monochrome-glasses-removebg-preview.png';
-      eyesImg.style.display = '';
+      eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '190px';
@@ -491,7 +502,7 @@
     document.getElementById('eyes-cloutgoggles-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = 'eyes/7-79919_cartoon-clout-goggles-transparent-hd-png-download-removebg-preview.png';
-      eyesImg.style.display = '';
+      eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '220px';
@@ -506,7 +517,7 @@
     document.getElementById('eyes-vector-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = 'eyes/pngtree-eye-glass-vector-png-image_4485520-removebg-preview.png';
-      eyesImg.style.display = '';
+      eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '220px';
@@ -521,7 +532,7 @@
     document.getElementById('eyes-sport-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = 'eyes/pngtree-sport-glasses-mockup-mock-up-picture-image_7736765-removebg-preview.png';
-      eyesImg.style.display = '';
+      eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '264px'; // 220px * 1.2
@@ -536,7 +547,7 @@
     document.getElementById('eyes-clipart-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = "eyes/sunglasses-clipart-design-illustration-free-png-removebg-preview (1).png";
-      eyesImg.style.display = '';
+      eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '200px';
@@ -551,7 +562,7 @@
     document.getElementById('eyes-rbvajfl-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = 'eyes/rBVaJFl_9t-AYmVHAAEE3Xj8F_Q250-removebg-preview.png';
-      eyesImg.style.display = '';
+      eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '2500px';
@@ -579,6 +590,7 @@
       zazuFrame.classList.remove('bg-green');
       zazuFrame.classList.remove('bg-mars');
       zazuFrame.classList.remove('bg-mars1');
+      zazuFrame.classList.remove('bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     // Add click handler for second background (stonks)
@@ -598,74 +610,81 @@
       zazuFrame.classList.remove('bg-green');
       zazuFrame.classList.remove('bg-mars');
       zazuFrame.classList.remove('bg-mars1');
+      zazuFrame.classList.remove('bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     // Add click handlers for all new backgrounds
     document.getElementById('bg-il570-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-il570');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-palm-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-palm');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-csgo-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-csgo');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-thousand-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-thousand');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-1000yard-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-1000yard');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-matrix-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-matrix');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-photo1465-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-photo1465');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-440557281','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-440557281-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-440557281');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-green','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-green','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-green-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-green');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-mars','bg-mars1');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-mars','bg-mars1','bg-us15');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-mars1-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-mars1');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-us15');
+      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+    });
+    document.getElementById('bg-us15-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-us15');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
       document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     // Hats: army helmet click handler
     document.getElementById('hat-armyhelmet-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = 'hats/548-5487748_35-ww2-army-helmet-png-transparent-png-removebg-preview.png';
-      hatImg.style.display = '';
+      hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
       hatImg.style.width = '400px';
       hatImg.style.height = '160px';
@@ -679,7 +698,7 @@
     document.getElementById('hat-beanie-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = 'hats/png-transparent-knit-cap-woolen-beanie-beanie-s-product-cap-clothing-removebg-preview.png';
-      hatImg.style.display = '';
+      hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
       hatImg.style.width = '238px';
       hatImg.style.height = '120px';
@@ -693,7 +712,7 @@
     document.getElementById('hat-cowboy-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = 'hats/pngtree-male-cowboy-hat-with-front-tie-rope-png-image_3053578-removebg-preview.png';
-      hatImg.style.display = '';
+      hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
       hatImg.style.width = '400px';
       hatImg.style.height = '150px';
@@ -707,7 +726,7 @@
     document.getElementById('hat-viking-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = 'hats/viking-helmets-with-transparent-cutout-free-png-removebg-preview.png';
-      hatImg.style.display = '';
+      hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
       hatImg.style.width = '400px';
       hatImg.style.height = '195px';
@@ -721,7 +740,7 @@
     document.getElementById('hat-maga-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = 'hats/MAGA-45-47-Hat-Red-Front-1-removebg-preview.png';
-      hatImg.style.display = '';
+      hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
       hatImg.style.width = '290px';
       hatImg.style.height = '180px';
@@ -735,7 +754,7 @@
     document.getElementById('hat-yankees-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = 'hats/761-7612333_new-era-new-york-yankees-black-white-fitted-removebg-preview.png';
-      hatImg.style.display = '';
+      hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
       hatImg.style.width = '300px';
       hatImg.style.height = '150px';
@@ -749,7 +768,7 @@
     document.getElementById('hat-random-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = 'hats/4d13a77fb621ce038157d0177ab692a5-removebg-preview.png';
-      hatImg.style.display = '';
+      hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
       hatImg.style.width = '400px';
       hatImg.style.height = '150px';
@@ -763,7 +782,7 @@
     document.getElementById('extras-chain-item').addEventListener('click', function() {
       const extrasImg = document.getElementById('editor-extras');
       extrasImg.src = 'extras/goldchain.png';
-      extrasImg.style.display = '';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
       extrasImg.style.width = '210px';
       extrasImg.style.height = '100px';
@@ -777,7 +796,7 @@
     document.getElementById('extras-blazer-item').addEventListener('click', function() {
       const extrasImg = document.getElementById('editor-extras');
       extrasImg.src = 'extras/suit.png';
-      extrasImg.style.display = '';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
       extrasImg.style.width = '350px';
       extrasImg.style.height = '130px';
@@ -791,7 +810,7 @@
     document.getElementById('extras-money-item').addEventListener('click', function() {
       const extrasImg = document.getElementById('editor-extras');
       extrasImg.src = 'extras/stack-money-on-white-backround-260nw-71606644-removebg-preview.png';
-      extrasImg.style.display = '';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
       extrasImg.style.width = '220px';
       extrasImg.style.height = '80px';
@@ -805,7 +824,7 @@
     document.getElementById('extras-image-item').addEventListener('click', function() {
       const extrasImg = document.getElementById('editor-extras');
       extrasImg.src = 'extras/images-removebg-preview.png';
-      extrasImg.style.display = '';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
       extrasImg.style.width = '120px';
       extrasImg.style.height = '86px';
@@ -819,7 +838,7 @@
     document.getElementById('extras-28de-item').addEventListener('click', function() {
       const extrasImg = document.getElementById('editor-extras');
       extrasImg.src = 'extras/28de83405317503236d1625e11031acc-removebg-preview.png';
-      extrasImg.style.display = '';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
       extrasImg.style.width = '120px';
       extrasImg.style.height = '90px';
@@ -833,12 +852,40 @@
     document.getElementById('extras-screenshot-item').addEventListener('click', function() {
       const extrasImg = document.getElementById('editor-extras');
       extrasImg.src = 'extras/Screenshot_2025-07-14_181558-removebg-preview.png';
-      extrasImg.style.display = '';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
       extrasImg.style.width = '120px';
       extrasImg.style.height = '120px';
       extrasImg.style.left = '115px';
       extrasImg.style.top = '200px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: 108 quickscope
+    document.getElementById('extras-108-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/108-1089650_mlg-quickscope-png-duty-modern-warfare-2-intervention-removebg-preview.png';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '320px';
+      extrasImg.style.height = '120px';
+      extrasImg.style.left = '55px';
+      extrasImg.style.top = '230px';
+      extrasImg.style.pointerEvents = 'none';
+      extrasImg.style.zIndex = '50';
+      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+    });
+    // Extras: smoke
+    document.getElementById('extras-smoke-item').addEventListener('click', function() {
+      const extrasImg = document.getElementById('editor-extras');
+      extrasImg.src = 'extras/smoke.png';
+      extrasImg.style.display = extrasImg.src ? '' : 'none';
+      extrasImg.style.position = 'absolute';
+      extrasImg.style.width = '120px';
+      extrasImg.style.height = '90px';
+      extrasImg.style.left = '165px';
+      extrasImg.style.top = '245px';
       extrasImg.style.pointerEvents = 'none';
       extrasImg.style.zIndex = '50';
       extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -860,18 +907,29 @@
       zazuFrame.classList.remove('bg-green');
       zazuFrame.classList.remove('bg-mars');
       zazuFrame.classList.remove('bg-mars1');
+      zazuFrame.classList.remove('bg-us15');
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = '';
       eyesImg.style.display = 'none';
+      eyesImg.alt = '';
       eyesImg.className = '';
       const hatImg = document.getElementById('editor-hat');
       hatImg.src = '';
       hatImg.style.display = 'none';
+      hatImg.alt = '';
       hatImg.className = '';
       const extrasImg = document.getElementById('editor-extras');
       extrasImg.src = '';
       extrasImg.style.display = 'none';
+      extrasImg.alt = '';
       extrasImg.className = '';
+      // Fix grid layout bug on reset
+      const grid = document.getElementById('editor-grid-items');
+      grid.style.display = 'none';
+      setTimeout(() => {
+        grid.style.display = '';
+        grid.scrollTop = 0;
+      }, 0);
     }
     function downloadZazu() {
       const frame = document.getElementById('zazu-frame');
@@ -934,6 +992,7 @@
           'bg-green': 'backgrounds/green.jpg',
           'bg-mars': 'backgrounds/mars].jpg',
           'bg-mars1': 'backgrounds/mars].jpg',
+          'bg-us15': 'backgrounds/US-15.jpg',
         };
         let found = false;
         for (const key in bgMap) {
