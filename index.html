@@ -1066,5 +1066,16 @@
       });
     }
   </script>
+  <script>
+    // Fix grid layout bug on initial page load
+    window.addEventListener('DOMContentLoaded', function() {
+      const grid = document.getElementById('editor-grid-items');
+      grid.style.display = 'none';
+      setTimeout(() => {
+        grid.style.display = '';
+        grid.scrollTop = 0;
+      }, 0);
+    });
+  </script>
 </body>
 </html> 
