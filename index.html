@@ -246,6 +246,9 @@
     .zazu-frame.bg-stonks {
       background: url('backgrounds/stonks.webp') center center / cover no-repeat !important;
     }
+    .zazu-frame.bg-matrix {
+      background: url('backgrounds/matrix.webp') center center / cover no-repeat !important;
+    }
     .zazu-frame.bg-beach {
       background: url('backgrounds/beach.webp') center center / cover no-repeat !important;
     }
@@ -261,9 +264,6 @@
     .zazu-frame.bg-green3 {
       background: url('backgrounds/green3.jpg') center center / cover no-repeat !important;
     }
-    .zazu-frame.bg-matrix {
-      background: url('backgrounds/matrix.webp') center center / cover no-repeat !important;
-    }
     .zazu-frame.bg-money {
       background: url('backgrounds/money.webp') center center / cover no-repeat !important;
     }
@@ -273,8 +273,11 @@
     .zazu-frame.bg-thousand {
       background: url('backgrounds/thousand.png') center center / cover no-repeat !important;
     }
-    .zazu-frame.bg-zoom {
-      background: url('backgrounds/zoom.jpg') center center / cover no-repeat !important;
+    .zazu-frame.bg-us15 {
+      background: url('backgrounds/US-15.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-mars {
+      background: url('backgrounds/mars].jpg') center center / cover no-repeat !important;
     }
     .zazu-frame img {
       max-width: 100%;
@@ -357,7 +360,7 @@
   </div>
   <div class="image-section">
     <div class="image-card">
-      <img src="zazucollage.gif" alt="Walter the cat" />
+      <img src="zazucollage2.gif" alt="Walter the cat" />
     </div>
   </div>
   <div class="editor-section">
@@ -385,16 +388,17 @@
         <div class="editor-grid-items" id="editor-grid-items" style="display:block;">
           <div class="editor-grid-item bg-white" id="bg-white-item"></div>
           <div class="editor-grid-item" id="bg-stonks-item" style="background: url('backgrounds/stonks.webp') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-matrix-item" style="background: url('backgrounds/matrix.webp') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-beach-item" style="background: url('backgrounds/beach.webp') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-bottom-item" style="background: url('backgrounds/bottom.png') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-dubai-item" style="background: url('backgrounds/dubai.jpg') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-dust-item" style="background: url('backgrounds/dust.avif') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-green3-item" style="background: url('backgrounds/green3.jpg') center center / cover no-repeat;"></div>
-          <div class="editor-grid-item" id="bg-matrix-item" style="background: url('backgrounds/matrix.webp') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-money-item" style="background: url('backgrounds/money.webp') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-nebula-item" style="background: url('backgrounds/nebula.jpg') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-thousand-item" style="background: url('backgrounds/thousand.png') center center / cover no-repeat;"></div>
-          <div class="editor-grid-item" id="bg-zoom-item" style="background: url('backgrounds/zoom.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-us15-item" style="background: url('backgrounds/US-15.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-mars-item" style="background: url('backgrounds/mars].jpg') center center / cover no-repeat;"></div>
         </div>
         <!-- Eyes grid, hidden by default -->
         <div class="editor-grid-items" id="eyes-grid-items" style="display:none;">
@@ -581,84 +585,91 @@
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-white');
       zazuFrame.classList.remove('bg-stonks');
+      zazuFrame.classList.remove('bg-matrix');
       zazuFrame.classList.remove('bg-beach');
       zazuFrame.classList.remove('bg-bottom');
       zazuFrame.classList.remove('bg-dubai');
       zazuFrame.classList.remove('bg-dust');
       zazuFrame.classList.remove('bg-green3');
-      zazuFrame.classList.remove('bg-matrix');
       zazuFrame.classList.remove('bg-money');
       zazuFrame.classList.remove('bg-nebula');
       zazuFrame.classList.remove('bg-thousand');
-      zazuFrame.classList.remove('bg-zoom');
+      zazuFrame.classList.remove('bg-us15');
+      zazuFrame.classList.remove('bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     // Add click handler for second background (stonks)
     document.getElementById('bg-stonks-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-stonks');
-      zazuFrame.classList.remove('bg-white','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-matrix','bg-money','bg-nebula','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     // Add click handlers for new backgrounds
+    document.getElementById('bg-matrix-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-matrix');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
+      document.getElementById('editor-zazu').src = 'zazu2.png';
+    });
     document.getElementById('bg-beach-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-beach');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-matrix','bg-money','bg-nebula','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     document.getElementById('bg-bottom-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-bottom');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-dubai','bg-dust','bg-green3','bg-matrix','bg-money','bg-nebula','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     document.getElementById('bg-dubai-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-dubai');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dust','bg-green3','bg-matrix','bg-money','bg-nebula','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     document.getElementById('bg-dust-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-dust');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-green3','bg-matrix','bg-money','bg-nebula','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     document.getElementById('bg-green3-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-green3');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-matrix','bg-money','bg-nebula','bg-thousand','bg-zoom');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
-    });
-    document.getElementById('bg-matrix-item').addEventListener('click', function() {
-      const zazuFrame = document.getElementById('zazu-frame');
-      zazuFrame.classList.add('bg-matrix');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     document.getElementById('bg-money-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-money');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-matrix','bg-nebula','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-nebula','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     document.getElementById('bg-nebula-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-nebula');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-matrix','bg-money','bg-thousand','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-thousand','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     document.getElementById('bg-thousand-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-thousand');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-matrix','bg-money','bg-nebula','bg-zoom');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-us15','bg-mars');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
-    document.getElementById('bg-zoom-item').addEventListener('click', function() {
+    document.getElementById('bg-us15-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
-      zazuFrame.classList.add('bg-zoom');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-matrix','bg-money','bg-nebula','bg-thousand');
+      zazuFrame.classList.add('bg-us15');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-mars');
+      document.getElementById('editor-zazu').src = 'zazu2.png';
+    });
+    document.getElementById('bg-mars-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-mars');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15');
       document.getElementById('editor-zazu').src = 'zazu2.png';
     });
     // Hats: army helmet click handler
@@ -862,16 +873,17 @@
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.remove('bg-white');
       zazuFrame.classList.remove('bg-stonks');
+      zazuFrame.classList.remove('bg-matrix');
       zazuFrame.classList.remove('bg-beach');
       zazuFrame.classList.remove('bg-bottom');
       zazuFrame.classList.remove('bg-dubai');
       zazuFrame.classList.remove('bg-dust');
       zazuFrame.classList.remove('bg-green3');
-      zazuFrame.classList.remove('bg-matrix');
       zazuFrame.classList.remove('bg-money');
       zazuFrame.classList.remove('bg-nebula');
       zazuFrame.classList.remove('bg-thousand');
-      zazuFrame.classList.remove('bg-zoom');
+      zazuFrame.classList.remove('bg-us15');
+      zazuFrame.classList.remove('bg-mars');
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = '';
       eyesImg.style.display = 'none';
@@ -944,16 +956,17 @@
         // Check for a background image class
         const bgMap = {
           'bg-stonks': 'backgrounds/stonks.webp',
+          'bg-matrix': 'backgrounds/matrix.webp',
           'bg-beach': 'backgrounds/beach.webp',
           'bg-bottom': 'backgrounds/bottom.png',
           'bg-dubai': 'backgrounds/dubai.jpg',
           'bg-dust': 'backgrounds/dust.avif',
           'bg-green3': 'backgrounds/green3.jpg',
-          'bg-matrix': 'backgrounds/matrix.webp',
           'bg-money': 'backgrounds/money.webp',
           'bg-nebula': 'backgrounds/nebula.jpg',
           'bg-thousand': 'backgrounds/thousand.png',
-          'bg-zoom': 'backgrounds/zoom.jpg',
+          'bg-us15': 'backgrounds/US-15.jpg',
+          'bg-mars': 'backgrounds/mars].jpg',
         };
         let found = false;
         for (const key in bgMap) {
