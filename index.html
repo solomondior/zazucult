@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WALTER</title>
-  <link rel="icon" type="image/png" href="zazu2.png">
+  <link rel="icon" type="image/png" href="zazu3.png">
   <style>
     html, body {
       height: 100%;
@@ -14,7 +14,7 @@
     body {
       min-height: 100vh;
       min-width: 100vw;
-      background: url('Windows-XP-4K-modified-scaled.jpg') no-repeat center center fixed;
+      background: url('starry.png') no-repeat center center fixed;
       background-size: cover;
       overflow-x: hidden;
       font-family: Arial, Helvetica, sans-serif;
@@ -25,16 +25,40 @@
       margin-top: 48px;
     }
     .title {
-      font-size: 4rem;
+      font-size: 5rem;
       font-weight: bold;
-      color: #222;
-      letter-spacing: 2px;
+      letter-spacing: 8px;
       margin-bottom: 16px;
-      text-shadow: 0 2px 8px rgba(255,255,255,0.3);
+      color: #fff;
+      text-shadow:
+        0 2px 8px rgba(0,0,0,0.3),
+        0 0 18px #ffb6d5,
+        0 0 32px #ffb6d5;
+      background: none;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset;
+      background-clip: unset;
+      text-fill-color: unset;
+      animation: none;
+      text-transform: uppercase;
+    }
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(-40px);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.1) translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
     .ca-text {
       font-size: 1.1rem;
-      color: #222;
+      color: #fff;
       margin-bottom: 12px;
       letter-spacing: 1px;
     }
@@ -119,7 +143,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 700px;
+      min-height: 900px;
+      max-height: none;
     }
     .editor-card {
       background: transparent;
@@ -196,9 +221,9 @@
       margin-top: 12px;
       margin-bottom: 0;
       position: relative;
-      min-height: 420px;
-      max-height: 520px;
-      overflow-y: hidden;
+      min-height: 600px;
+      max-height: none;
+      overflow-y: visible;
     }
     .editor-grid-title {
       color: #fff;
@@ -246,11 +271,8 @@
     .zazu-frame.bg-stonks {
       background: url('backgrounds/stonks.webp') center center / cover no-repeat !important;
     }
-    .zazu-frame.bg-matrix {
-      background: url('backgrounds/matrix.webp') center center / cover no-repeat !important;
-    }
     .zazu-frame.bg-beach {
-      background: url('backgrounds/beach.webp') center center / cover no-repeat !important;
+      background: url('backgrounds/beach.jpg') center center / cover no-repeat !important;
     }
     .zazu-frame.bg-bottom {
       background: url('backgrounds/bottom.png') center center / cover no-repeat !important;
@@ -264,20 +286,29 @@
     .zazu-frame.bg-green3 {
       background: url('backgrounds/green3.jpg') center center / cover no-repeat !important;
     }
-    .zazu-frame.bg-money {
-      background: url('backgrounds/money.webp') center center / cover no-repeat !important;
-    }
-    .zazu-frame.bg-nebula {
-      background: url('backgrounds/nebula.jpg') center center / cover no-repeat !important;
-    }
-    .zazu-frame.bg-thousand {
-      background: url('backgrounds/thousand.png') center center / cover no-repeat !important;
-    }
     .zazu-frame.bg-us15 {
       background: url('backgrounds/US-15.jpg') center center / cover no-repeat !important;
     }
     .zazu-frame.bg-mars {
       background: url('backgrounds/mars].jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-green {
+      background: url('backgrounds/green.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-matrix-code {
+      background: url('backgrounds/matrix-code.avif') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-photo-1517976547714 {
+      background: url('backgrounds/photo-1517976547714-720226b864c1.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-premium-photo {
+      background: url('backgrounds/premium_photo-1681469490587-cf7ff1d6fc00.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-blue-sky {
+      background: url('backgrounds/pngtree-a-blue-sky-above-clouds-with-clouds-image_13313410.jpg') center center / cover no-repeat !important;
+    }
+    .zazu-frame.bg-download {
+      background: url('backgrounds/download.webp') center center / cover no-repeat !important;
     }
     .zazu-frame img {
       max-width: 100%;
@@ -345,32 +376,34 @@
       z-index: 10;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
     }
+    .editor-grid-item.glow {
+      box-shadow: 0 0 16px 4px #00ffea, 0 2px 8px rgba(0,0,0,0.18);
+      border: 2px solid #00ffea;
+      z-index: 2;
+      transition: box-shadow 0.2s, border 0.2s;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <div class="title">WALTER</div>
-    <div class="ca-text">Contract address: <span id="ca">CvfwCehKMRHZdNzDtx8KhRiNKNUD2CwKxU3VASpXbonk</span></div>
+    <div class="title">VALENTINE</div>
+    <div class="ca-text">Contract address: <span id="ca">E3aznmAySwcKodEXUSmZVxXYdRw6jDweSXahjac8bonk</span></div>
     <button class="copy-btn" onclick="copyCA()">Copy CA</button>
     <div class="btn-group">
-      <button class="main-btn" onclick="window.open('https://x.com/walter2049552', '_blank')">OFFICIAL X</button>
-      <button class="main-btn" onclick="window.open('https://x.com/i/communities/1945516271333773793', '_blank')">X-COMMUNITY</button>
-      <button class="main-btn" onclick="window.open('https://letsbonk.fun/token/CvfwCehKMRHZdNzDtx8KhRiNKNUD2CwKxU3VASpXbonk', '_blank')">BUY</button>
+      <button class="main-btn" onclick="window.open('https://x.com/Valentinesoldev', '_blank')">OFFICIAL X</button>
+      <button class="main-btn" onclick="window.open('https://x.com/i/communities/1945871343972499600/', '_blank')">X-COMMUNITY</button>
+      <button class="main-btn" onclick="window.open('https://letsbonk.fun/token/E3aznmAySwcKodEXUSmZVxXYdRw6jDweSXahjac8bonk', '_blank')">BUY</button>
     </div>
   </div>
-  <div class="image-section">
-    <div class="image-card">
-      <img src="zazucollage2.gif" alt="Walter the cat" />
-    </div>
-  </div>
+  <!-- Removed the gif section. Editor now sits directly below the button group. -->
   <div class="editor-section">
     <div class="editor-container">
       <div class="editor-card">
-        <div id="zazu-frame" class="zazu-frame">
-          <img id="editor-zazu" src="zazu2.png" alt="Walter the cat editor" />
+        <div id="zazu-frame" class="zazu-frame bg-white">
+          <img id="editor-zazu" src="zazu3.png" alt="Walter the cat editor" />
           <img id="editor-hat" src="" alt="Zazu hat overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 30;" />
           <img id="editor-eyes" src="" alt="Zazu eyes overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 40;" />
-          <img id="editor-extras" src="" alt="Zazu extras overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 50;" />
+          <!-- Remove the single #editor-extras image -->
         </div>
       </div>
       <div class="editor-btn-group">
@@ -380,7 +413,7 @@
       <div class="editor-tabs">
         <div class="editor-tab active" data-tab="Background">Background</div>
         <div class="editor-tab" data-tab="Eyes">Eyes</div>
-        <div class="editor-tab" data-tab="Hats">Hats</div>
+        <!-- Removed the Hats tab -->
         <div class="editor-tab" data-tab="Extras">Extras</div>
       </div>
       <div class="editor-grid">
@@ -388,17 +421,19 @@
         <div class="editor-grid-items" id="editor-grid-items" style="display:block;">
           <div class="editor-grid-item bg-white" id="bg-white-item"></div>
           <div class="editor-grid-item" id="bg-stonks-item" style="background: url('backgrounds/stonks.webp') center center / cover no-repeat;"></div>
-          <div class="editor-grid-item" id="bg-matrix-item" style="background: url('backgrounds/matrix.webp') center center / cover no-repeat;"></div>
-          <div class="editor-grid-item" id="bg-beach-item" style="background: url('backgrounds/beach.webp') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-beach-item" style="background: url('backgrounds/beach.jpg') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-bottom-item" style="background: url('backgrounds/bottom.png') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-dubai-item" style="background: url('backgrounds/dubai.jpg') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-dust-item" style="background: url('backgrounds/dust.avif') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-green3-item" style="background: url('backgrounds/green3.jpg') center center / cover no-repeat;"></div>
-          <div class="editor-grid-item" id="bg-money-item" style="background: url('backgrounds/money.webp') center center / cover no-repeat;"></div>
-          <div class="editor-grid-item" id="bg-nebula-item" style="background: url('backgrounds/nebula.jpg') center center / cover no-repeat;"></div>
-          <div class="editor-grid-item" id="bg-thousand-item" style="background: url('backgrounds/thousand.png') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-us15-item" style="background: url('backgrounds/US-15.jpg') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-mars-item" style="background: url('backgrounds/mars].jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-green-item" style="background: url('backgrounds/green.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-matrix-code-item" style="background: url('backgrounds/matrix-code.avif') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-photo-1517976547714-item" style="background: url('backgrounds/photo-1517976547714-720226b864c1.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-premium-photo-item" style="background: url('backgrounds/premium_photo-1681469490587-cf7ff1d6fc00.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-blue-sky-item" style="background: url('backgrounds/pngtree-a-blue-sky-above-clouds-with-clouds-image_13313410.jpg') center center / cover no-repeat;"></div>
+          <div class="editor-grid-item" id="bg-download-item" style="background: url('backgrounds/download.webp') center center / cover no-repeat;"></div>
         </div>
         <!-- Eyes grid, hidden by default -->
         <div class="editor-grid-items" id="eyes-grid-items" style="display:none;">
@@ -410,25 +445,25 @@
           <div class="editor-grid-item eyes-grid-option" id="eyes-clipart-item" style="background: url('eyes/sunglasses-clipart-design-illustration-free-png-removebg-preview (1).png') center center / contain no-repeat;"></div>
           <div class="editor-grid-item eyes-grid-option" id="eyes-rbvajfl-item" style="background: url('eyes/rBVaJFl_9t-AYmVHAAEE3Xj8F_Q250-removebg-preview.png') center center / contain no-repeat;"></div>
         </div>
-        <!-- Hats grid, hidden by default -->
-        <div class="editor-grid-items" id="hats-grid-items" style="display:none;">
-          <div class="editor-grid-item eyes-grid-option" id="hat-armyhelmet-item" style="background: url('hats/armyhat.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-beanie-item" style="background: url('hats/png-transparent-knit-cap-woolen-beanie-beanie-s-product-cap-clothing-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-cowboy-item" style="background: url('hats/pngtree-male-cowboy-hat-with-front-tie-rope-png-image_3053578-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-viking-item" style="background: url('hats/viking-helmets-with-transparent-cutout-free-png-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-maga-item" style="background: url('hats/MAGA-45-47-Hat-Red-Front-1-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-yankees-item" style="background: url('hats/761-7612333_new-era-new-york-yankees-black-white-fitted-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-random-item" style="background: url('hats/4d13a77fb621ce038157d0177ab692a5-removebg-preview.png') center center / contain no-repeat;"></div>
-        </div>
+        <!-- Removed the hats grid -->
         <!-- Extras grid, hidden by default -->
         <div class="editor-grid-items" id="extras-grid-items" style="display:none;">
-          <div class="editor-grid-item eyes-grid-option" id="extras-chain-item" style="background: url('extras/goldchain.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="extras-money-item" style="background: url('extras/stack-money-on-white-backround-260nw-71606644-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="extras-image-item" style="background: url('extras/images-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="extras-28de-item" style="background: url('extras/28de83405317503236d1625e11031acc-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="extras-screenshot-item" style="background: url('extras/Screenshot_2025-07-14_181558-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-illuminati-item" style="background: url('extras/Illuminati-Logo-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-mountaindew-item" style="background: url('extras/Mountain_Dew_logo.svg-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-iirjkbw-item" style="background: url('extras/iirjkbw36rr31-removebg-preview-1.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-frog-item" style="background: url('extras/png-clipart-frog-plush-toy-mlg-frog-red-memes-get-out-frog-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-doritos-item" style="background: url('extras/png-clipart-logo-font-brand-product-ranch-dressing-jerry-mlg-logo-doritos-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-shiba-item" style="background: url('extras/png-clipart-shiba-inu-dogecoin-pug-breed-group-dog-pomerainian-carnivoran-dog-like-mammal-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
           <div class="editor-grid-item eyes-grid-option" id="extras-108-item" style="background: url('extras/108-1089650_mlg-quickscope-png-duty-modern-warfare-2-intervention-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="extras-smoke-item" style="background: url('extras/smoke.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-money-item" style="background: url('extras/stack-money-on-white-backround-260nw-71606644-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-screenshot-item" style="background: url('extras/Screenshot_2025-07-14_181558-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-pepe-item" style="background: url('extras/png-clipart-pepe-the-frog-illustration-pepe-the-frog-kek-4chan-internet-meme-punch-punch-mammal-face-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-nyancat-item" style="background: url('extras/png-clipart-nyan-cat-desktop-nyan-text-rectangle-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-61751-item" style="background: url('extras/61751-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-mlgblue-item" style="background: url('extras/png-clipart-major-league-gaming-call-of-duty-championship-video-game-turtle-beach-corporation-xbox-360-mlg-blue-game-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-whitex-item" style="background: url('extras/png-clipart-white-x-illustration-major-league-gaming-android-android-angle-text-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-sonic-item" style="background: url('extras/png-clipart-sonic-the-hedgehog-2-playstation-4-video-game-wiki-sonic-the-hedgehog-sonic-the-hedgehog-fictional-character-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="extras-sniper-item" style="background: url('extras/png-clipart-sniper-fire-rifle-scope-sight-thumbnail-removebg-preview.png') center center / contain no-repeat;"></div>
         </div>
       </div>
     </div>
@@ -450,27 +485,18 @@
         if(tabName === 'Background') {
           document.getElementById('editor-grid-items').style.display = '';
           document.getElementById('eyes-grid-items').style.display = 'none';
-          document.getElementById('hats-grid-items').style.display = 'none';
           document.getElementById('extras-grid-items').style.display = 'none';
         } else if(tabName === 'Eyes') {
           document.getElementById('editor-grid-items').style.display = 'none';
           document.getElementById('eyes-grid-items').style.display = '';
-          document.getElementById('hats-grid-items').style.display = 'none';
-          document.getElementById('extras-grid-items').style.display = 'none';
-        } else if(tabName === 'Hats') {
-          document.getElementById('editor-grid-items').style.display = 'none';
-          document.getElementById('eyes-grid-items').style.display = 'none';
-          document.getElementById('hats-grid-items').style.display = '';
           document.getElementById('extras-grid-items').style.display = 'none';
         } else if(tabName === 'Extras') {
           document.getElementById('editor-grid-items').style.display = 'none';
           document.getElementById('eyes-grid-items').style.display = 'none';
-          document.getElementById('hats-grid-items').style.display = 'none';
           document.getElementById('extras-grid-items').style.display = '';
         } else {
           document.getElementById('editor-grid-items').style.display = '';
           document.getElementById('eyes-grid-items').style.display = 'none';
-          document.getElementById('hats-grid-items').style.display = 'none';
           document.getElementById('extras-grid-items').style.display = 'none';
         }
       });
@@ -482,13 +508,14 @@
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '200px';
+      eyesImg.style.width = '180px';
       eyesImg.style.height = '110px';
-      eyesImg.style.left = '95px';
-      eyesImg.style.top = '105px';
+      eyesImg.style.left = '85px';
+      eyesImg.style.top = '100px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      eyesImg.style.transform = 'rotate(15deg)';
     });
     // Eyes: shutter shades click handler
     document.getElementById('eyes-shuttershades-item').addEventListener('click', function() {
@@ -499,11 +526,12 @@
       eyesImg.style.position = 'absolute';
       eyesImg.style.width = '120px';
       eyesImg.style.height = '40px';
-      eyesImg.style.left = '155px';
+      eyesImg.style.left = '135px';
       eyesImg.style.top = '155px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      eyesImg.style.transform = 'rotate(15deg)';
     });
     // Eyes: clout goggles click handler
     document.getElementById('eyes-cloutgoggles-item').addEventListener('click', function() {
@@ -512,13 +540,14 @@
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '160px';
-      eyesImg.style.height = '60px';
-      eyesImg.style.left = '135px';
+      eyesImg.style.width = '100px';
+      eyesImg.style.height = '50px';
+      eyesImg.style.left = '145px';
       eyesImg.style.top = '145px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      eyesImg.style.transform = 'rotate(11deg)';
     });
     // Eyes: vector glasses click handler
     document.getElementById('eyes-vector-item').addEventListener('click', function() {
@@ -527,13 +556,14 @@
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '160px';
-      eyesImg.style.height = '60px';
+      eyesImg.style.width = '100px';
+      eyesImg.style.height = '30px';
       eyesImg.style.left = '135px';
       eyesImg.style.top = '140px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      eyesImg.style.transform = 'rotate(11deg)';
     });
     // Eyes: sport glasses click handler
     document.getElementById('eyes-sport-item').addEventListener('click', function() {
@@ -542,13 +572,14 @@
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '204px'; // 220px * 1.2
+      eyesImg.style.width = '154px'; // 220px * 1.2
       eyesImg.style.height = '104px'; // 120px * 1.2
       eyesImg.style.left = '115px';
       eyesImg.style.top = '120px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '15';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      eyesImg.style.transform = 'rotate(12deg)';
     });
     // Eyes: clipart sunglasses click handler
     document.getElementById('eyes-clipart-item').addEventListener('click', function() {
@@ -557,13 +588,14 @@
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '150px';
-      eyesImg.style.height = '40px';
-      eyesImg.style.left = '140px';
+      eyesImg.style.width = '100px';
+      eyesImg.style.height = '30px';
+      eyesImg.style.left = '144px';
       eyesImg.style.top = '153px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      eyesImg.style.transform = 'rotate(12deg)';
     });
     // Eyes: rbvajfl sunglasses click handler
     document.getElementById('eyes-rbvajfl-item').addEventListener('click', function() {
@@ -572,340 +604,260 @@
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '200px';
-      eyesImg.style.height = '80px';
-      eyesImg.style.left = '113px';
-      eyesImg.style.top = '130px';
+      eyesImg.style.width = '140px';
+      eyesImg.style.height = '60px';
+      eyesImg.style.left = '128px';
+      eyesImg.style.top = '137px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      eyesImg.style.transform = 'rotate(12deg)';
     });
     // Add click handler for first background (white)
     document.getElementById('bg-white-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-white');
       zazuFrame.classList.remove('bg-stonks');
-      zazuFrame.classList.remove('bg-matrix');
       zazuFrame.classList.remove('bg-beach');
       zazuFrame.classList.remove('bg-bottom');
       zazuFrame.classList.remove('bg-dubai');
       zazuFrame.classList.remove('bg-dust');
       zazuFrame.classList.remove('bg-green3');
-      zazuFrame.classList.remove('bg-money');
-      zazuFrame.classList.remove('bg-nebula');
-      zazuFrame.classList.remove('bg-thousand');
       zazuFrame.classList.remove('bg-us15');
       zazuFrame.classList.remove('bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     // Add click handler for second background (stonks)
     document.getElementById('bg-stonks-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-stonks');
-      zazuFrame.classList.remove('bg-white','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     // Add click handlers for new backgrounds
-    document.getElementById('bg-matrix-item').addEventListener('click', function() {
-      const zazuFrame = document.getElementById('zazu-frame');
-      zazuFrame.classList.add('bg-matrix');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
-    });
     document.getElementById('bg-beach-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-beach');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     document.getElementById('bg-bottom-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-bottom');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     document.getElementById('bg-dubai-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-dubai');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dust','bg-green3','bg-us15','bg-mars','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     document.getElementById('bg-dust-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-dust');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-green3','bg-us15','bg-mars','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     document.getElementById('bg-green3-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-green3');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-money','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
-    });
-    document.getElementById('bg-money-item').addEventListener('click', function() {
-      const zazuFrame = document.getElementById('zazu-frame');
-      zazuFrame.classList.add('bg-money');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-nebula','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
-    });
-    document.getElementById('bg-nebula-item').addEventListener('click', function() {
-      const zazuFrame = document.getElementById('zazu-frame');
-      zazuFrame.classList.add('bg-nebula');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-thousand','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
-    });
-    document.getElementById('bg-thousand-item').addEventListener('click', function() {
-      const zazuFrame = document.getElementById('zazu-frame');
-      zazuFrame.classList.add('bg-thousand');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-us15','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-us15','bg-mars','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     document.getElementById('bg-us15-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-us15');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-mars');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-mars','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
     document.getElementById('bg-mars-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-mars');
-      zazuFrame.classList.remove('bg-white','bg-stonks','bg-matrix','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-money','bg-nebula','bg-thousand','bg-us15');
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-green');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
     });
-    // Hats: army helmet click handler
-    document.getElementById('hat-armyhelmet-item').addEventListener('click', function() {
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/armyhat.png';
-      hatImg.style.display = hatImg.src ? '' : 'none';
-      hatImg.style.position = 'absolute';
-      hatImg.style.width = '100px';
-      hatImg.style.height = '90px';
-      hatImg.style.left = '180px';
-      hatImg.style.top = '85px';
-      hatImg.style.pointerEvents = 'none';
-      hatImg.style.zIndex = '20';
-      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Hats: beanie click handler
-    document.getElementById('hat-beanie-item').addEventListener('click', function() {
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/png-transparent-knit-cap-woolen-beanie-beanie-s-product-cap-clothing-removebg-preview.png';
-      hatImg.style.display = hatImg.src ? '' : 'none';
-      hatImg.style.position = 'absolute';
-      hatImg.style.width = '138px';
-      hatImg.style.height = '60px';
-      hatImg.style.left = '155px';
-      hatImg.style.top = '110px';
-      hatImg.style.pointerEvents = 'none';
-      hatImg.style.zIndex = '20';
-      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Hats: cowboy click handler
-    document.getElementById('hat-cowboy-item').addEventListener('click', function() {
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/pngtree-male-cowboy-hat-with-front-tie-rope-png-image_3053578-removebg-preview.png';
-      hatImg.style.display = hatImg.src ? '' : 'none';
-      hatImg.style.position = 'absolute';
-      hatImg.style.width = '330px';
-      hatImg.style.height = '150px';
-      hatImg.style.left = '50px';
-      hatImg.style.top = '75px';
-      hatImg.style.pointerEvents = 'none';
-      hatImg.style.zIndex = '20';
-      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Hats: viking click handler
-    document.getElementById('hat-viking-item').addEventListener('click', function() {
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/viking-helmets-with-transparent-cutout-free-png-removebg-preview.png';
-      hatImg.style.display = hatImg.src ? '' : 'none';
-      hatImg.style.position = 'absolute';
-      hatImg.style.width = '220px';
-      hatImg.style.height = '145px';
-      hatImg.style.left = '105px';
-      hatImg.style.top = '50px';
-      hatImg.style.pointerEvents = 'none';
-      hatImg.style.zIndex = '20';
-      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Hats: maga click handler
-    document.getElementById('hat-maga-item').addEventListener('click', function() {
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/MAGA-45-47-Hat-Red-Front-1-removebg-preview.png';
-      hatImg.style.display = hatImg.src ? '' : 'none';
-      hatImg.style.position = 'absolute';
-      hatImg.style.width = '220px';
-      hatImg.style.height = '140px';
-      hatImg.style.left = '105px';
-      hatImg.style.top = '55px';
-      hatImg.style.pointerEvents = 'none';
-      hatImg.style.zIndex = '20';
-      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Hats: yankees click handler
-    document.getElementById('hat-yankees-item').addEventListener('click', function() {
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/761-7612333_new-era-new-york-yankees-black-white-fitted-removebg-preview.png';
-      hatImg.style.display = hatImg.src ? '' : 'none';
-      hatImg.style.position = 'absolute';
-      hatImg.style.width = '150px';
-      hatImg.style.height = '100px';
-      hatImg.style.left = '140px';
-      hatImg.style.top = '80px';
-      hatImg.style.pointerEvents = 'none';
-      hatImg.style.zIndex = '20';
-      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Hats: random click handler
-    document.getElementById('hat-random-item').addEventListener('click', function() {
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/4d13a77fb621ce038157d0177ab692a5-removebg-preview.png';
-      hatImg.style.display = hatImg.src ? '' : 'none';
-      hatImg.style.position = 'absolute';
-      hatImg.style.width = '250px';
-      hatImg.style.height = '150px';
-      hatImg.style.left = '90px';
-      hatImg.style.top = '50px';
-      hatImg.style.pointerEvents = 'none';
-      hatImg.style.zIndex = '20';
-      hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Extras: thug life chain
-    document.getElementById('extras-chain-item').addEventListener('click', function() {
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = 'extras/goldchain.png';
-      extrasImg.style.display = extrasImg.src ? '' : 'none';
-      extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '130px';
-      extrasImg.style.height = '60px';
-      extrasImg.style.left = '150px';
-      extrasImg.style.top = '260px';
-      extrasImg.style.pointerEvents = 'none';
-      extrasImg.style.zIndex = '50';
-      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Extras: stack of money
-    document.getElementById('extras-money-item').addEventListener('click', function() {
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = 'extras/stack-money-on-white-backround-260nw-71606644-removebg-preview.png';
-      extrasImg.style.display = extrasImg.src ? '' : 'none';
-      extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '220px';
-      extrasImg.style.height = '80px';
-      extrasImg.style.left = '100px';
-      extrasImg.style.top = '260px';
-      extrasImg.style.pointerEvents = 'none';
-      extrasImg.style.zIndex = '50';
-      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Extras: images-removebg-preview
-    document.getElementById('extras-image-item').addEventListener('click', function() {
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = 'extras/images-removebg-preview.png';
-      extrasImg.style.display = extrasImg.src ? '' : 'none';
-      extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '120px';
-      extrasImg.style.height = '66px';
-      extrasImg.style.left = '155px';
-      extrasImg.style.top = '285px';
-      extrasImg.style.pointerEvents = 'none';
-      extrasImg.style.zIndex = '50';
-      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Extras: 28de8340... item
-    document.getElementById('extras-28de-item').addEventListener('click', function() {
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = 'extras/28de83405317503236d1625e11031acc-removebg-preview.png';
-      extrasImg.style.display = extrasImg.src ? '' : 'none';
-      extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '100px';
-      extrasImg.style.height = '70px';
-      extrasImg.style.left = '225px';
-      extrasImg.style.top = '244px';
-      extrasImg.style.pointerEvents = 'none';
-      extrasImg.style.zIndex = '50';
-      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Extras: screenshot item
-    document.getElementById('extras-screenshot-item').addEventListener('click', function() {
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = 'extras/Screenshot_2025-07-14_181558-removebg-preview.png';
-      extrasImg.style.display = extrasImg.src ? '' : 'none';
-      extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '120px';
-      extrasImg.style.height = '120px';
-      extrasImg.style.left = '165px';
-      extrasImg.style.top = '200px';
-      extrasImg.style.pointerEvents = 'none';
-      extrasImg.style.zIndex = '50';
-      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Extras: 108 quickscope
-    document.getElementById('extras-108-item').addEventListener('click', function() {
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = 'extras/108-1089650_mlg-quickscope-png-duty-modern-warfare-2-intervention-removebg-preview.png';
-      extrasImg.style.display = extrasImg.src ? '' : 'none';
-      extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '320px';
-      extrasImg.style.height = '120px';
-      extrasImg.style.left = '0px';
-      extrasImg.style.top = '230px';
-      extrasImg.style.pointerEvents = 'none';
-      extrasImg.style.zIndex = '50';
-      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    // Extras: smoke
-    document.getElementById('extras-smoke-item').addEventListener('click', function() {
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = 'extras/smoke.png';
-      extrasImg.style.display = extrasImg.src ? '' : 'none';
-      extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '100px';
-      extrasImg.style.height = '70px';
-      extrasImg.style.left = '230px';
-      extrasImg.style.top = '250px';
-      extrasImg.style.pointerEvents = 'none';
-      extrasImg.style.zIndex = '50';
-      extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
-    });
-    function resetZazu() {
-      document.getElementById('editor-zazu').src = 'zazu2.png';
+    document.getElementById('bg-green-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
-      zazuFrame.classList.remove('bg-white');
-      zazuFrame.classList.remove('bg-stonks');
-      zazuFrame.classList.remove('bg-matrix');
-      zazuFrame.classList.remove('bg-beach');
-      zazuFrame.classList.remove('bg-bottom');
-      zazuFrame.classList.remove('bg-dubai');
-      zazuFrame.classList.remove('bg-dust');
-      zazuFrame.classList.remove('bg-green3');
-      zazuFrame.classList.remove('bg-money');
-      zazuFrame.classList.remove('bg-nebula');
-      zazuFrame.classList.remove('bg-thousand');
-      zazuFrame.classList.remove('bg-us15');
-      zazuFrame.classList.remove('bg-mars');
+      zazuFrame.classList.add('bg-green');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
+    });
+    document.getElementById('bg-matrix-code-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-matrix-code');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green','bg-photo-1517976547714','bg-premium-photo','bg-blue-sky');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
+    });
+    document.getElementById('bg-photo-1517976547714-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-photo-1517976547714');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green','bg-matrix-code','bg-premium-photo','bg-blue-sky');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
+    });
+    document.getElementById('bg-premium-photo-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-premium-photo');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green','bg-matrix-code','bg-photo-1517976547714','bg-blue-sky');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
+    });
+    document.getElementById('bg-blue-sky-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-blue-sky');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green','bg-matrix-code','bg-photo-1517976547714','bg-premium-photo');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
+    });
+    document.getElementById('bg-download-item').addEventListener('click', function() {
+      const zazuFrame = document.getElementById('zazu-frame');
+      zazuFrame.classList.add('bg-download');
+      zazuFrame.classList.remove('bg-white','bg-stonks','bg-beach','bg-bottom','bg-dubai','bg-dust','bg-green3','bg-us15','bg-mars','bg-green','bg-matrix-code','bg-photo-1517976547714','bg-premium-photo','bg-blue-sky');
+      document.getElementById('editor-zazu').src = 'zazu3.png';
+    });
+    // Update bgMap in downloadZazu
+    const bgMap = {
+      'bg-stonks': 'backgrounds/stonks.webp',
+      'bg-beach': 'backgrounds/beach.jpg',
+      'bg-bottom': 'backgrounds/bottom.png',
+      'bg-dubai': 'backgrounds/dubai.jpg',
+      'bg-dust': 'backgrounds/dust.avif',
+      'bg-green3': 'backgrounds/green3.jpg',
+      'bg-us15': 'backgrounds/US-15.jpg',
+      'bg-mars': 'backgrounds/mars].jpg',
+      'bg-green': 'backgrounds/green.jpg',
+      'bg-matrix-code': 'backgrounds/matrix-code.avif',
+      'bg-photo-1517976547714': 'backgrounds/photo-1517976547714-720226b864c1.jpg',
+      'bg-premium-photo': 'backgrounds/premium_photo-1681469490587-cf7ff1d6fc00.jpg',
+      'bg-blue-sky': 'backgrounds/pngtree-a-blue-sky-above-clouds-with-clouds-image_13313410.jpg',
+      'bg-download': 'backgrounds/download.webp',
+    };
+    // --- EXTRAS STACKING LOGIC ---
+    // Config: scaling and position for each extra overlay
+    const extraStyles = {
+      money:      {width:'220px',height:'80px',left:'100px',top:'275px'},
+      screenshot: {width:'120px',height:'100px',left:'130px',top:'170px'},
+      108:        {width:'320px',height:'120px',left:'55px',top:'230px'},
+      illuminati: {width:'100px',height:'100px',left:'20px',top:'10px'},
+      mountaindew:{width:'120px',height:'120px',left:'230px',top:'180px'},
+      iirjkbw:    {width:'100px',height:'80px',left:'185px',top:'200px'},
+      frog:       {width:'120px',height:'120px',left:'15px',top:'200px'},
+      doritos:    {width:'120px',height:'120px',left:'220px',top:'30px'},
+      shiba:      {width:'120px',height:'120px',left:'35px',top:'150px'},
+      pepe:       {width:'120px',height:'120px',left:'228px',top:'228px'},
+      nyancat:    {width:'200px',height:'80px',left:'145px',top:'0px'},
+      61751:      {width:'200px',height:'180px',left:'95px',top:'10px'},
+      mlgblue:    {width:'100px',height:'60px',left:'115px',top:'20px'},
+      whitex:     {width:'60px',height:'60px',left:'115px',top:'100px'},
+      sonic:      {width:'100px',height:'80px',left:'0px',top:'100px'},
+      sniper:     {width:'120px',height:'120px',left:'115px',top:'100px'},
+    };
+    // Helper: add extra overlay if not already present
+    function addExtraOverlay(id, src, styleObj) {
+      const zazuFrame = document.getElementById('zazu-frame');
+      const gridItem = document.getElementById('extras-' + id + '-item');
+      if (zazuFrame.querySelector(`img[data-extra="${id}"]`)) return; // Prevent duplicate
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = id;
+      img.setAttribute('data-extra', id);
+      img.style.position = 'absolute';
+      img.style.pointerEvents = 'none';
+      img.style.zIndex = '50';
+      img.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
+      // Use config if available, else fallback to passed styleObj
+      const style = extraStyles[id] || styleObj || {};
+      Object.assign(img.style, style);
+      zazuFrame.appendChild(img);
+      if (gridItem) gridItem.classList.add('glow');
+    }
+    // Helper: check if extra is active
+    function isExtraActive(id) {
+      const zazuFrame = document.getElementById('zazu-frame');
+      return !!zazuFrame.querySelector(`img[data-extra="${id}"]`);
+    }
+    // Helper: update all grid glows
+    function updateExtrasGlow() {
+      const ids = ['illuminati','mountaindew','iirjkbw','frog','doritos','shiba','108','money','screenshot','pepe','nyancat','61751','mlgblue','whitex','sonic','sniper'];
+      ids.forEach(id => {
+        const gridItem = document.getElementById('extras-' + id + '-item');
+        if (gridItem) {
+          if (isExtraActive(id)) gridItem.classList.add('glow');
+          else gridItem.classList.remove('glow');
+        }
+      });
+    }
+    // Click handlers for each extra (update all to use addExtraOverlay and glow)
+    document.getElementById('extras-money-item').addEventListener('click', function() {
+      addExtraOverlay('money', 'extras/stack-money-on-white-backround-260nw-71606644-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-screenshot-item').addEventListener('click', function() {
+      addExtraOverlay('screenshot', 'extras/Screenshot_2025-07-14_181558-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-108-item').addEventListener('click', function() {
+      addExtraOverlay('108', 'extras/108-1089650_mlg-quickscope-png-duty-modern-warfare-2-intervention-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-illuminati-item').addEventListener('click', function() {
+      addExtraOverlay('illuminati', 'extras/Illuminati-Logo-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-mountaindew-item').addEventListener('click', function() {
+      addExtraOverlay('mountaindew', 'extras/Mountain_Dew_logo.svg-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-iirjkbw-item').addEventListener('click', function() {
+      addExtraOverlay('iirjkbw', 'extras/iirjkbw36rr31-removebg-preview-1.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-frog-item').addEventListener('click', function() {
+      addExtraOverlay('frog', 'extras/png-clipart-frog-plush-toy-mlg-frog-red-memes-get-out-frog-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-doritos-item').addEventListener('click', function() {
+      addExtraOverlay('doritos', 'extras/png-clipart-logo-font-brand-product-ranch-dressing-jerry-mlg-logo-doritos-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-shiba-item').addEventListener('click', function() {
+      addExtraOverlay('shiba', 'extras/png-clipart-shiba-inu-dogecoin-pug-breed-group-dog-pomerainian-carnivoran-dog-like-mammal-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-pepe-item').addEventListener('click', function() {
+      addExtraOverlay('pepe', 'extras/png-clipart-pepe-the-frog-illustration-pepe-the-frog-kek-4chan-internet-meme-punch-punch-mammal-face-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-nyancat-item').addEventListener('click', function() {
+      addExtraOverlay('nyancat', 'extras/png-clipart-nyan-cat-desktop-nyan-text-rectangle-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-61751-item').addEventListener('click', function() {
+      addExtraOverlay('61751', 'extras/61751-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-mlgblue-item').addEventListener('click', function() {
+      addExtraOverlay('mlgblue', 'extras/png-clipart-major-league-gaming-call-of-duty-championship-video-game-turtle-beach-corporation-xbox-360-mlg-blue-game-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-whitex-item').addEventListener('click', function() {
+      addExtraOverlay('whitex', 'extras/png-clipart-white-x-illustration-major-league-gaming-android-android-angle-text-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-sonic-item').addEventListener('click', function() {
+      addExtraOverlay('sonic', 'extras/png-clipart-sonic-the-hedgehog-2-playstation-4-video-game-wiki-sonic-the-hedgehog-sonic-the-hedgehog-fictional-character-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    document.getElementById('extras-sniper-item').addEventListener('click', function() {
+      addExtraOverlay('sniper', 'extras/png-clipart-sniper-fire-rifle-scope-sight-thumbnail-removebg-preview.png'); updateExtrasGlow();
+    });
+    // --- END EXTRAS STACKING LOGIC ---
+    function resetZazu() {
+      document.getElementById('editor-zazu').src = 'zazu3.png';
+      const zazuFrame = document.getElementById('zazu-frame');
+      // Remove all classes that start with 'bg-'
+      zazuFrame.className = zazuFrame.className.split(' ').filter(c => !c.startsWith('bg-')).join(' ');
       const eyesImg = document.getElementById('editor-eyes');
       eyesImg.src = '';
       eyesImg.style.display = 'none';
       eyesImg.alt = '';
       eyesImg.className = '';
-      const hatImg = document.getElementById('editor-hat');
-      hatImg.src = '';
-      hatImg.style.display = 'none';
-      hatImg.alt = '';
-      hatImg.className = '';
-      const extrasImg = document.getElementById('editor-extras');
-      extrasImg.src = '';
-      extrasImg.style.display = 'none';
-      extrasImg.alt = '';
-      extrasImg.className = '';
-      // Fix grid layout bug on reset
-      const grid = document.getElementById('editor-grid-items');
-      grid.style.display = 'none';
-      setTimeout(() => {
-        grid.style.display = '';
-        grid.scrollTop = 0;
-      }, 0);
+      // Remove all extras overlays
+      Array.from(zazuFrame.querySelectorAll('img[data-extra]')).forEach(img => img.remove());
+      updateExtrasGlow();
+      // Show only the correct grid for the active tab
+      const activeTab = document.querySelector('.editor-tab.active').getAttribute('data-tab');
+      document.getElementById('editor-grid-items').style.display = (activeTab === 'Background') ? '' : 'none';
+      document.getElementById('eyes-grid-items').style.display = (activeTab === 'Eyes') ? '' : 'none';
+      document.getElementById('extras-grid-items').style.display = (activeTab === 'Extras') ? '' : 'none';
+      // Reset scroll for all grids
+      document.getElementById('editor-grid-items').scrollTop = 0;
+      document.getElementById('eyes-grid-items').scrollTop = 0;
+      document.getElementById('extras-grid-items').scrollTop = 0;
     }
     function downloadZazu() {
       const frame = document.getElementById('zazu-frame');
@@ -956,17 +908,19 @@
         // Check for a background image class
         const bgMap = {
           'bg-stonks': 'backgrounds/stonks.webp',
-          'bg-matrix': 'backgrounds/matrix.webp',
-          'bg-beach': 'backgrounds/beach.webp',
+          'bg-beach': 'backgrounds/beach.jpg',
           'bg-bottom': 'backgrounds/bottom.png',
           'bg-dubai': 'backgrounds/dubai.jpg',
           'bg-dust': 'backgrounds/dust.avif',
           'bg-green3': 'backgrounds/green3.jpg',
-          'bg-money': 'backgrounds/money.webp',
-          'bg-nebula': 'backgrounds/nebula.jpg',
-          'bg-thousand': 'backgrounds/thousand.png',
           'bg-us15': 'backgrounds/US-15.jpg',
           'bg-mars': 'backgrounds/mars].jpg',
+          'bg-green': 'backgrounds/green.jpg',
+          'bg-matrix-code': 'backgrounds/matrix-code.avif',
+          'bg-photo-1517976547714': 'backgrounds/photo-1517976547714-720226b864c1.jpg',
+          'bg-premium-photo': 'backgrounds/premium_photo-1681469490587-cf7ff1d6fc00.jpg',
+          'bg-blue-sky': 'backgrounds/pngtree-a-blue-sky-above-clouds-with-clouds-image_13313410.jpg',
+          'bg-download': 'backgrounds/download.webp',
         };
         let found = false;
         for (const key in bgMap) {
@@ -998,11 +952,11 @@
       ctx.strokeRect(0, 0, size, size);
       ctx.restore();
 
-      // 2. Draw overlays in order: zazu, hat, eyes, extras
+      // 2. Draw overlays in order: zazu, eyes, all extras
       const zazuImg = document.getElementById('editor-zazu');
-      const hatImg = document.getElementById('editor-hat');
       const eyesImg = document.getElementById('editor-eyes');
-      const extrasImg = document.getElementById('editor-extras');
+      // Draw all extras overlays (in DOM order)
+      const extrasImgs = Array.from(frame.querySelectorAll('img[data-extra]'));
 
       bgPromise.then(() => {
         // Draw Zazu using its actual DOM position and size
@@ -1010,14 +964,6 @@
           const rect = getOverlayRect(zazuImg, frame);
           if (rect) {
             return drawImageIfSet(zazuImg, rect.x, rect.y, rect.w, rect.h);
-          }
-        }
-      }).then(() => {
-        // Draw hat overlay (if visible)
-        if (hatImg && hatImg.style.display !== 'none' && hatImg.src) {
-          const rect = getOverlayRect(hatImg, frame);
-          if (rect) {
-            return drawImageIfSet(hatImg, rect.x, rect.y, rect.w, rect.h);
           }
         }
       }).then(() => {
@@ -1029,13 +975,17 @@
           }
         }
       }).then(() => {
-        // Draw extras overlay (if visible)
-        if (extrasImg && extrasImg.style.display !== 'none' && extrasImg.src) {
-          const rect = getOverlayRect(extrasImg, frame);
-          if (rect) {
-            return drawImageIfSet(extrasImg, rect.x, rect.y, rect.w, rect.h);
-          }
-        }
+        // Draw all extras overlays (in DOM order)
+        return extrasImgs.reduce((p, img) => {
+          return p.then(() => {
+            if (img && img.src && img.style.display !== 'none') {
+              const rect = getOverlayRect(img, frame);
+              if (rect) {
+                return drawImageIfSet(img, rect.x, rect.y, rect.w, rect.h);
+              }
+            }
+          });
+        }, Promise.resolve());
       }).then(() => {
         // Open the canvas as PNG in a new tab with an <img> tag
         const dataUrl = canvas.toDataURL('image/png');
