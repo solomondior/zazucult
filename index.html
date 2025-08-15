@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZAZU</title>
-  <link rel="icon" type="image/png" href="zazu.png">
+  <title>RIGBY</title>
+  <link rel="icon" type="image/png" href="rigby.png">
   <style>
     html, body {
       height: 100%;
@@ -82,6 +82,7 @@
       margin-top: 80px;
       margin-bottom: 80px;
       width: 100%;
+      gap: 40px;
     }
     .image-card {
       background: #fff;
@@ -231,13 +232,21 @@
     .editor-card.white-bg {
       background: #fff !important;
     }
+    .zazu-frame-wrapper {
+      width: 360px;
+      height: 360px;
+      border: 5px solid #fff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
     .zazu-frame {
       position: relative;
       width: 350px;
       height: 350px;
       background: transparent;
-      border: 5px solid #fff;
-      box-sizing: border-box;
       display: block;
     }
     .zazu-frame.bg-white {
@@ -283,13 +292,32 @@
       background: url('backgrounds/US-15.jpg') center center / cover no-repeat !important;
     }
     .zazu-frame img {
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 120%;
+      max-height: 120%;
       background: transparent !important;
       border-radius: 4px;
-      position: relative;
+      position: absolute;
+      bottom: -120px;
+      left: -10%;
+      width: 120%;
+      height: auto;
       /* z-index removed to allow inline z-index to control stacking */
     }
+    
+    /* Ensure Rigby is positioned at the bottom */
+    .zazu-frame img[src*="rigby.png"] {
+      bottom: -120px !important;
+    }
+    
+    /* Special styling for zazu.png when it's selected */
+    .zazu-frame img[src*="zazu.png"] {
+      width: 90% !important;
+      max-width: 90% !important;
+      left: 8% !important;
+      bottom: 38px !important;
+    }
+    
+
     #editor-eyes[style*="display: none"],
     #editor-hat[style*="display: none"],
     #editor-extras[style*="display: none"] {
@@ -337,12 +365,45 @@
       border-radius: 8px;
       padding: 4px;
     }
+    
+    /* Special styling for cat selection grid */
+    #cat-grid-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      grid-template-columns: unset;
+    }
+    
+    #cat-grid-items .editor-grid-item {
+      width: 200px;
+      height: 240px;
+      border: 3px solid #fff;
+      border-radius: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    /* Make Rigby image bigger in the button */
+    #cat-rigby-item {
+      background-size: 140% !important;
+      background-position: center 95% !important;
+    }
+    
+    #cat-grid-items .editor-grid-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+    }
+    
+    /* Ensure cat grid can be hidden by JavaScript */
+    #cat-grid-items[style*="display: none"] {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <div class="title">ZAZU</div>
-    <div class="ca-text">Contract address: <span id="ca">CAzFRqFj3WvsgiaVUfzjMbKvf2Kp5vHALPeGQdh1bonk</span></div>
+    <div class="title">CAT CULT</div>
+    <div class="ca-text">Contract address: <span id="ca">4EjZ8qa9PZh2G22Tindf3i9bxNdT3YXYNi23ThpQbonk</span></div>
     <button class="copy-btn" onclick="copyCA()">Copy CA</button>
     <div class="btn-group">
       <button class="main-btn" onclick="window.open('https://x.com/zazudotfun', '_blank')">OFFICIAL X</button>
@@ -354,15 +415,20 @@
     <div class="image-card">
       <img src="zazucollage.gif" alt="Zazu the cat" />
     </div>
+    <div class="image-card">
+      <img src="rigbycollage2.gif" alt="Rigby the cat" />
+    </div>
   </div>
   <div class="editor-section">
     <div class="editor-container">
       <div class="editor-card">
-        <div id="zazu-frame" class="zazu-frame">
-          <img id="editor-zazu" src="zazu.png" alt="Zazu the cat editor" style="position: relative;" />
-          <img id="editor-hat" src="" alt="Zazu hat overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 30;" />
-          <img id="editor-eyes" src="" alt="Zazu eyes overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 40;" />
-          <img id="editor-extras" src="" alt="Zazu extras overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 50;" />
+        <div class="zazu-frame-wrapper">
+          <div id="zazu-frame" class="zazu-frame">
+            <img id="editor-zazu" src="rigby.png" alt="Rigby the cat editor" style="position: relative;" />
+            <img id="editor-hat" src="" alt="Zazu hat overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 30;" />
+            <img id="editor-eyes" src="" alt="Zazu eyes overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 40;" />
+            <img id="editor-extras" src="" alt="Zazu extras overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index: 50;" />
+          </div>
         </div>
       </div>
       <div class="editor-btn-group">
@@ -370,14 +436,19 @@
         <button class="editor-btn" onclick="downloadZazu()">DOWNLOAD</button>
       </div>
       <div class="editor-tabs">
-        <div class="editor-tab active" data-tab="Background">Background</div>
+        <div class="editor-tab active" data-tab="Cat">Cat</div>
+        <div class="editor-tab" data-tab="Background">Background</div>
         <div class="editor-tab" data-tab="Eyes">Eyes</div>
         <div class="editor-tab" data-tab="Hats">Hats</div>
         <div class="editor-tab" data-tab="Extras">Extras</div>
       </div>
       <div class="editor-grid">
-        <div class="editor-grid-title" id="editor-grid-title">BACKGROUND</div>
-        <div class="editor-grid-items" id="editor-grid-items" style="display:block;">
+        <div class="editor-grid-title" id="editor-grid-title">CAT</div>
+        <div class="editor-grid-items" id="cat-grid-items" style="display:block;">
+          <div class="editor-grid-item eyes-grid-option" id="cat-rigby-item" style="background: url('rigby.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="cat-zazu-item" style="background: url('zazu.png') center center / contain no-repeat;"></div>
+        </div>
+        <div class="editor-grid-items" id="editor-grid-items" style="display:none;">
           <div class="editor-grid-item bg-white" id="bg-white-item"></div>
           <div class="editor-grid-item" id="bg-stonks-item" style="background: url('backgrounds/stonks.webp') center center / cover no-repeat;"></div>
           <div class="editor-grid-item" id="bg-il570-item" style="background: url('backgrounds/il_570xN.3774897538_agib.webp') center center / cover no-repeat;"></div>
@@ -405,13 +476,13 @@
         </div>
         <!-- Hats grid, hidden by default -->
         <div class="editor-grid-items" id="hats-grid-items" style="display:none;">
-          <div class="editor-grid-item eyes-grid-option" id="hat-armyhelmet-item" style="background: url('hats/548-5487748_35-ww2-army-helmet-png-transparent-png-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-beanie-item" style="background: url('hats/png-transparent-knit-cap-woolen-beanie-beanie-s-product-cap-clothing-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-cowboy-item" style="background: url('hats/pngtree-male-cowboy-hat-with-front-tie-rope-png-image_3053578-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-armyhelmet-item" style="background: url('hats/army-helmet.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-beanie-item" style="background: url('hats/beanie.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-cowboy-item" style="background: url('hats/cowboy-hat.png') center center / contain no-repeat;"></div>
           <div class="editor-grid-item eyes-grid-option" id="hat-viking-item" style="background: url('hats/viking-helmets-with-transparent-cutout-free-png-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-maga-item" style="background: url('hats/MAGA-45-47-Hat-Red-Front-1-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-yankees-item" style="background: url('hats/761-7612333_new-era-new-york-yankees-black-white-fitted-removebg-preview.png') center center / contain no-repeat;"></div>
-          <div class="editor-grid-item eyes-grid-option" id="hat-random-item" style="background: url('hats/4d13a77fb621ce038157d0177ab692a5-removebg-preview.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-maga-item" style="background: url('hats/maga-hat.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-yankees-item" style="background: url('hats/yankees-hat.png') center center / contain no-repeat;"></div>
+          <div class="editor-grid-item eyes-grid-option" id="hat-random-item" style="background: url('hats/random-hat.png') center center / contain no-repeat;"></div>
         </div>
         <!-- Extras grid, hidden by default -->
         <div class="editor-grid-items" id="extras-grid-items" style="display:none;">
@@ -441,27 +512,38 @@
         const tabName = this.getAttribute('data-tab');
         document.getElementById('editor-grid-title').textContent = tabName.toUpperCase();
         // Show/hide grids
-        if(tabName === 'Background') {
+        if(tabName === 'Cat') {
+          document.getElementById('cat-grid-items').style.display = 'flex';
+          document.getElementById('editor-grid-items').style.display = 'none';
+          document.getElementById('eyes-grid-items').style.display = 'none';
+          document.getElementById('hats-grid-items').style.display = 'none';
+          document.getElementById('extras-grid-items').style.display = 'none';
+        } else if(tabName === 'Background') {
+          document.getElementById('cat-grid-items').style.display = 'none';
           document.getElementById('editor-grid-items').style.display = '';
           document.getElementById('eyes-grid-items').style.display = 'none';
           document.getElementById('hats-grid-items').style.display = 'none';
           document.getElementById('extras-grid-items').style.display = 'none';
         } else if(tabName === 'Eyes') {
+          document.getElementById('cat-grid-items').style.display = 'none';
           document.getElementById('editor-grid-items').style.display = 'none';
           document.getElementById('eyes-grid-items').style.display = '';
           document.getElementById('hats-grid-items').style.display = 'none';
           document.getElementById('extras-grid-items').style.display = 'none';
         } else if(tabName === 'Hats') {
+          document.getElementById('cat-grid-items').style.display = 'none';
           document.getElementById('editor-grid-items').style.display = 'none';
           document.getElementById('eyes-grid-items').style.display = 'none';
           document.getElementById('hats-grid-items').style.display = '';
           document.getElementById('extras-grid-items').style.display = 'none';
         } else if(tabName === 'Extras') {
+          document.getElementById('cat-grid-items').style.display = 'none';
           document.getElementById('editor-grid-items').style.display = 'none';
           document.getElementById('eyes-grid-items').style.display = 'none';
           document.getElementById('hats-grid-items').style.display = 'none';
           document.getElementById('extras-grid-items').style.display = '';
         } else {
+          document.getElementById('cat-grid-items').style.display = 'none';
           document.getElementById('editor-grid-items').style.display = '';
           document.getElementById('eyes-grid-items').style.display = 'none';
           document.getElementById('hats-grid-items').style.display = 'none';
@@ -469,17 +551,42 @@
         }
       });
     });
+    // Cat selection handlers
+    document.getElementById('cat-zazu-item').addEventListener('click', function() {
+      document.getElementById('editor-zazu').src = 'zazu.png';
+      // Reposition existing overlays for the new cat
+      repositionOverlaysForCurrentCat();
+    });
+    
+    document.getElementById('cat-rigby-item').addEventListener('click', function() {
+      document.getElementById('editor-zazu').src = 'rigby.png';
+      // Reposition existing overlays for the new cat
+      repositionOverlaysForCurrentCat();
+    });
+    
     // Eyes: 8 bit glasses click handler
     document.getElementById('eyes-8bit-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
+      const currentCat = document.getElementById('editor-zazu').src;
       eyesImg.src = 'eyes/8bit-glasses.png';
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '300px';
-      eyesImg.style.height = '110px';
-      eyesImg.style.left = '55px';
-      eyesImg.style.top = '105px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        eyesImg.style.width = '300px';
+        eyesImg.style.height = '140px';
+        eyesImg.style.left = '67px';
+        eyesImg.style.top = '75px';
+      } else {
+        // Rigby positioning (larger cat)
+        eyesImg.style.width = '260px';
+        eyesImg.style.height = '130px';
+        eyesImg.style.left = '60px';
+        eyesImg.style.top = '100px';
+      }
+      
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -487,14 +594,26 @@
     // Eyes: shutter shades click handler
     document.getElementById('eyes-shuttershades-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
+      const currentCat = document.getElementById('editor-zazu').src;
       eyesImg.src = 'eyes/png-transparent-white-eyewear-shutter-shades-aviator-sunglasses-shutter-s-text-monochrome-glasses-removebg-preview.png';
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '190px';
-      eyesImg.style.height = '80px';
-      eyesImg.style.left = '72px';
-      eyesImg.style.top = '130px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        eyesImg.style.width = '200px';
+        eyesImg.style.height = '60px';
+        eyesImg.style.left = '85px';
+        eyesImg.style.top = '135px';
+      } else {
+        // Rigby positioning (larger cat)
+        eyesImg.style.width = '150px';
+        eyesImg.style.height = '40px';
+        eyesImg.style.left = '90px';
+        eyesImg.style.top = '160px';
+      }
+      
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -502,14 +621,26 @@
     // Eyes: clout goggles click handler
     document.getElementById('eyes-cloutgoggles-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
+      const currentCat = document.getElementById('editor-zazu').src;
       eyesImg.src = 'eyes/7-79919_cartoon-clout-goggles-transparent-hd-png-download-removebg-preview.png';
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '220px';
-      eyesImg.style.height = '90px';
-      eyesImg.style.left = '55px';
-      eyesImg.style.top = '125px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        eyesImg.style.width = '200px';
+        eyesImg.style.height = '60px';
+        eyesImg.style.left = '85px';
+        eyesImg.style.top = '125px';
+      } else {
+        // Rigby positioning (larger cat)
+        eyesImg.style.width = '170px';
+        eyesImg.style.height = '60px';
+        eyesImg.style.left = '80px';
+        eyesImg.style.top = '145px';
+      }
+      
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -517,14 +648,26 @@
     // Eyes: vector glasses click handler
     document.getElementById('eyes-vector-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
+      const currentCat = document.getElementById('editor-zazu').src;
       eyesImg.src = 'eyes/pngtree-eye-glass-vector-png-image_4485520-removebg-preview.png';
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '220px';
-      eyesImg.style.height = '115px';
-      eyesImg.style.left = '55px';
-      eyesImg.style.top = '115px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        eyesImg.style.width = '200px';
+        eyesImg.style.height = '200px';
+        eyesImg.style.left = '80px';
+        eyesImg.style.top = '70px';
+      } else {
+        // Rigby positioning (larger cat)
+        eyesImg.style.width = '180px';
+        eyesImg.style.height = '115px';
+        eyesImg.style.left = '75px';
+        eyesImg.style.top = '125px';
+      }
+      
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -532,14 +675,26 @@
     // Eyes: sport glasses click handler
     document.getElementById('eyes-sport-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
+      const currentCat = document.getElementById('editor-zazu').src;
       eyesImg.src = 'eyes/pngtree-sport-glasses-mockup-mock-up-picture-image_7736765-removebg-preview.png';
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '264px'; // 220px * 1.2
-      eyesImg.style.height = '144px'; // 120px * 1.2
-      eyesImg.style.left = '35px';
-      eyesImg.style.top = '97px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        eyesImg.style.width = '254px';
+        eyesImg.style.height = '174px';
+        eyesImg.style.left = '60px';
+        eyesImg.style.top = '79px';
+      } else {
+        // Rigby positioning (larger cat)
+        eyesImg.style.width = '224px';
+        eyesImg.style.height = '144px';
+        eyesImg.style.left = '48px';
+        eyesImg.style.top = '107px';
+      }
+      
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '15';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -547,14 +702,26 @@
     // Eyes: clipart sunglasses click handler
     document.getElementById('eyes-clipart-item').addEventListener('click', function() {
       const eyesImg = document.getElementById('editor-eyes');
+      const currentCat = document.getElementById('editor-zazu').src;
       eyesImg.src = "eyes/sunglasses-clipart-design-illustration-free-png-removebg-preview (1).png";
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '200px';
-      eyesImg.style.height = '70px';
-      eyesImg.style.left = '65px';
-      eyesImg.style.top = '140px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        eyesImg.style.width = '190px';
+        eyesImg.style.height = '60px';
+        eyesImg.style.left = '90px';
+        eyesImg.style.top = '133px';
+      } else {
+        // Rigby positioning (larger cat)
+        eyesImg.style.width = '160px';
+        eyesImg.style.height = '50px';
+        eyesImg.style.left = '85px';
+        eyesImg.style.top = '155px';
+      }
+      
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -566,10 +733,10 @@
       eyesImg.style.display = eyesImg.src ? '' : 'none';
       eyesImg.removeAttribute('class');
       eyesImg.style.position = 'absolute';
-      eyesImg.style.width = '2500px';
-      eyesImg.style.height = '110px';
-      eyesImg.style.left = '0px';
-      eyesImg.style.top = '115px';
+      eyesImg.style.width = '280px';
+      eyesImg.style.height = '120px';
+      eyesImg.style.left = '50px';
+      eyesImg.style.top = '95px';
       eyesImg.style.pointerEvents = 'none';
       eyesImg.style.zIndex = '10';
       eyesImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -592,7 +759,7 @@
       zazuFrame.classList.remove('bg-mars');
       zazuFrame.classList.remove('bg-mars1');
       zazuFrame.classList.remove('bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     // Add click handler for second background (stonks)
     document.getElementById('bg-stonks-item').addEventListener('click', function() {
@@ -612,85 +779,97 @@
       zazuFrame.classList.remove('bg-mars');
       zazuFrame.classList.remove('bg-mars1');
       zazuFrame.classList.remove('bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     // Add click handlers for all new backgrounds
     document.getElementById('bg-il570-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-il570');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-palm-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-palm');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-csgo-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-csgo');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-thousand-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-thousand');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-1000yard-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-1000yard');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-matrix-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-matrix');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-photo1465-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-photo1465');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-440557281','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-440557281-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-440557281');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-green','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-green-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-green');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-mars','bg-mars1','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-mars1-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-mars1');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-us15');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     document.getElementById('bg-us15-item').addEventListener('click', function() {
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.add('bg-us15');
       zazuFrame.classList.remove('bg-white','bg-stonks','bg-il570','bg-palm','bg-djnu1oa','bg-csgo','bg-thousand','bg-1000yard','bg-matrix','bg-photo1465','bg-440557281','bg-green','bg-mars','bg-mars1');
-      document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
+      // document.getElementById('editor-zazu').src = '4jjdwz3mz4od1.png';
     });
     // Hats: army helmet click handler
     document.getElementById('hat-armyhelmet-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/548-5487748_35-ww2-army-helmet-png-transparent-png-removebg-preview.png';
+      const currentCat = document.getElementById('editor-zazu').src;
+      hatImg.src = 'hats/army-helmet.png';
       hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
-      hatImg.style.width = '400px';
-      hatImg.style.height = '160px';
-      hatImg.style.left = '0px';
-      hatImg.style.top = '75px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        hatImg.style.width = '350px';
+        hatImg.style.height = '150px';
+        hatImg.style.left = '5px';
+        hatImg.style.top = '75px';
+      } else {
+        // Rigby positioning (larger cat)
+        hatImg.style.width = '330px';
+        hatImg.style.height = '160px';
+        hatImg.style.left = '05px';
+        hatImg.style.top = '95px';
+      }
+      
       hatImg.style.pointerEvents = 'none';
       hatImg.style.zIndex = '20';
       hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -698,13 +877,25 @@
     // Hats: beanie click handler
     document.getElementById('hat-beanie-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/png-transparent-knit-cap-woolen-beanie-beanie-s-product-cap-clothing-removebg-preview.png';
+      const currentCat = document.getElementById('editor-zazu').src;
+      hatImg.src = 'hats/beanie.png';
       hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
-      hatImg.style.width = '238px';
-      hatImg.style.height = '120px';
-      hatImg.style.left = '60px';
-      hatImg.style.top = '45px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        hatImg.style.width = '208px';
+        hatImg.style.height = '60px';
+        hatImg.style.left = '95px';
+        hatImg.style.top = '80px';
+      } else {
+        // Rigby positioning (larger cat)
+        hatImg.style.width = '208px';
+        hatImg.style.height = '80px';
+        hatImg.style.left = '75px';
+        hatImg.style.top = '115px';
+      }
+      
       hatImg.style.pointerEvents = 'none';
       hatImg.style.zIndex = '20';
       hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -712,13 +903,25 @@
     // Hats: cowboy click handler
     document.getElementById('hat-cowboy-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/pngtree-male-cowboy-hat-with-front-tie-rope-png-image_3053578-removebg-preview.png';
+      const currentCat = document.getElementById('editor-zazu').src;
+      hatImg.src = 'hats/cowboy-hat.png';
       hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
-      hatImg.style.width = '400px';
-      hatImg.style.height = '150px';
-      hatImg.style.left = '0px';
-      hatImg.style.top = '45px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        hatImg.style.width = '400px';
+        hatImg.style.height = '150px';
+        hatImg.style.left = '-10px';
+        hatImg.style.top = '35px';
+      } else {
+        // Rigby positioning (larger cat)
+        hatImg.style.width = '390px';
+        hatImg.style.height = '150px';
+        hatImg.style.left = '-33px';
+        hatImg.style.top = '75px';
+      }
+      
       hatImg.style.pointerEvents = 'none';
       hatImg.style.zIndex = '20';
       hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -726,13 +929,25 @@
     // Hats: viking click handler
     document.getElementById('hat-viking-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
+      const currentCat = document.getElementById('editor-zazu').src;
       hatImg.src = 'hats/viking-helmets-with-transparent-cutout-free-png-removebg-preview.png';
       hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
-      hatImg.style.width = '400px';
-      hatImg.style.height = '195px';
-      hatImg.style.left = '0px';
-      hatImg.style.top = '0px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        hatImg.style.width = '300px';
+        hatImg.style.height = '145px';
+        hatImg.style.left = '35px';
+        hatImg.style.top = '15px';
+      } else {
+        // Rigby positioning (larger cat)
+        hatImg.style.width = '300px';
+        hatImg.style.height = '195px';
+        hatImg.style.left = '15px';
+        hatImg.style.top = '20px';
+      }
+      
       hatImg.style.pointerEvents = 'none';
       hatImg.style.zIndex = '20';
       hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -740,13 +955,25 @@
     // Hats: maga click handler
     document.getElementById('hat-maga-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/MAGA-45-47-Hat-Red-Front-1-removebg-preview.png';
+      const currentCat = document.getElementById('editor-zazu').src;
+      hatImg.src = 'hats/maga-hat.png';
       hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
-      hatImg.style.width = '290px';
-      hatImg.style.height = '180px';
-      hatImg.style.left = '25px';
-      hatImg.style.top = '5px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        hatImg.style.width = '220px';
+        hatImg.style.height = '140px';
+        hatImg.style.left = '75px';
+        hatImg.style.top = '25px';
+      } else {
+        // Rigby positioning (larger cat)
+        hatImg.style.width = '190px';
+        hatImg.style.height = '100px';
+        hatImg.style.left = '65px';
+        hatImg.style.top = '75px';
+      }
+      
       hatImg.style.pointerEvents = 'none';
       hatImg.style.zIndex = '20';
       hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -754,13 +981,25 @@
     // Hats: yankees click handler
     document.getElementById('hat-yankees-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/761-7612333_new-era-new-york-yankees-black-white-fitted-removebg-preview.png';
+      const currentCat = document.getElementById('editor-zazu').src;
+      hatImg.src = 'hats/yankees-hat.png';
       hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
-      hatImg.style.width = '300px';
-      hatImg.style.height = '150px';
-      hatImg.style.left = '18px';
-      hatImg.style.top = '30px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        hatImg.style.width = '180px';
+        hatImg.style.height = '100px';
+        hatImg.style.left = '95px';
+        hatImg.style.top = '30px';
+      } else {
+        // Rigby positioning (larger cat)
+        hatImg.style.width = '300px';
+        hatImg.style.height = '100px';
+        hatImg.style.left = '18px';
+        hatImg.style.top = '80px';
+      }
+      
       hatImg.style.pointerEvents = 'none';
       hatImg.style.zIndex = '20';
       hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -768,13 +1007,25 @@
     // Hats: random click handler
     document.getElementById('hat-random-item').addEventListener('click', function() {
       const hatImg = document.getElementById('editor-hat');
-      hatImg.src = 'hats/4d13a77fb621ce038157d0177ab692a5-removebg-preview.png';
+      const currentCat = document.getElementById('editor-zazu').src;
+      hatImg.src = 'hats/random-hat.png';
       hatImg.style.display = hatImg.src ? '' : 'none';
       hatImg.style.position = 'absolute';
-      hatImg.style.width = '400px';
-      hatImg.style.height = '150px';
-      hatImg.style.left = '0px';
-      hatImg.style.top = '25px';
+      
+      if (currentCat.includes('zazu.png')) {
+        // Zazu positioning (smaller cat)
+        hatImg.style.width = '400px';
+        hatImg.style.height = '150px';
+        hatImg.style.left = '-5px';
+        hatImg.style.top = '20px';
+      } else {
+        // Rigby positioning (larger cat)
+        hatImg.style.width = '400px';
+        hatImg.style.height = '150px';
+        hatImg.style.left = '-30px';
+        hatImg.style.top = '45px';
+      }
+      
       hatImg.style.pointerEvents = 'none';
       hatImg.style.zIndex = '20';
       hatImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -785,10 +1036,10 @@
       extrasImg.src = 'extras/goldchain.png';
       extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
-      extrasImg.style.width = '210px';
-      extrasImg.style.height = '100px';
-      extrasImg.style.left = '60px';
-      extrasImg.style.top = '220px';
+      extrasImg.style.width = '180px';
+      extrasImg.style.height = '50px';
+      extrasImg.style.left = '85px';
+      extrasImg.style.top = '280px';
       extrasImg.style.pointerEvents = 'none';
       extrasImg.style.zIndex = '50';
       extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -802,7 +1053,7 @@
       extrasImg.style.width = '350px';
       extrasImg.style.height = '130px';
       extrasImg.style.left = '0px';
-      extrasImg.style.top = '215px';
+      extrasImg.style.top = '225px';
       extrasImg.style.pointerEvents = 'none';
       extrasImg.style.zIndex = '50';
       extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -828,9 +1079,9 @@
       extrasImg.style.display = extrasImg.src ? '' : 'none';
       extrasImg.style.position = 'absolute';
       extrasImg.style.width = '120px';
-      extrasImg.style.height = '86px';
+      extrasImg.style.height = '80px';
       extrasImg.style.left = '107px';
-      extrasImg.style.top = '255px';
+      extrasImg.style.top = '280px';
       extrasImg.style.pointerEvents = 'none';
       extrasImg.style.zIndex = '50';
       extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -858,7 +1109,7 @@
       extrasImg.style.width = '120px';
       extrasImg.style.height = '120px';
       extrasImg.style.left = '115px';
-      extrasImg.style.top = '200px';
+      extrasImg.style.top = '190px';
       extrasImg.style.pointerEvents = 'none';
       extrasImg.style.zIndex = '50';
       extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -872,7 +1123,7 @@
       extrasImg.style.width = '320px';
       extrasImg.style.height = '120px';
       extrasImg.style.left = '55px';
-      extrasImg.style.top = '230px';
+      extrasImg.style.top = '243px';
       extrasImg.style.pointerEvents = 'none';
       extrasImg.style.zIndex = '50';
       extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
@@ -891,8 +1142,187 @@
       extrasImg.style.zIndex = '50';
       extrasImg.style.filter = 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))';
     });
+    // Function to reposition existing overlays when switching cats
+    function repositionOverlaysForCurrentCat() {
+      const currentCat = document.getElementById('editor-zazu').src;
+      const eyesImg = document.getElementById('editor-eyes');
+      const hatImg = document.getElementById('editor-hat');
+      
+      // Reposition eyes if they're visible
+      if (eyesImg && eyesImg.style.display !== 'none' && eyesImg.src) {
+        if (eyesImg.src.includes('8bit-glasses.png')) {
+          if (currentCat.includes('zazu.png')) {
+            eyesImg.style.width = '300px';
+            eyesImg.style.height = '140px';
+            eyesImg.style.left = '67px';
+            eyesImg.style.top = '75px';
+          } else {
+            eyesImg.style.width = '260px';
+            eyesImg.style.height = '130px';
+            eyesImg.style.left = '60px';
+            eyesImg.style.top = '100px';
+          }
+        } else if (eyesImg.src.includes('shutter-shades')) {
+          if (currentCat.includes('zazu.png')) {
+            eyesImg.style.width = '200px';
+            eyesImg.style.height = '60px';
+            eyesImg.style.left = '85px';
+            eyesImg.style.top = '135px';
+          } else {
+            eyesImg.style.width = '150px';
+            eyesImg.style.height = '40px';
+            eyesImg.style.left = '90px';
+            eyesImg.style.top = '160px';
+          }
+        } else if (eyesImg.src.includes('clout-goggles')) {
+          if (currentCat.includes('zazu.png')) {
+            eyesImg.style.width = '200px';
+            eyesImg.style.height = '60px';
+            eyesImg.style.left = '85px';
+            eyesImg.style.top = '125px';
+          } else {
+            eyesImg.style.width = '170px';
+            eyesImg.style.height = '60px';
+            eyesImg.style.left = '80px';
+            eyesImg.style.top = '145px';
+          }
+        } else if (eyesImg.src.includes('vector')) {
+          if (currentCat.includes('zazu.png')) {
+            eyesImg.style.width = '200px';
+            eyesImg.style.height = '200px';
+            eyesImg.style.left = '80px';
+            eyesImg.style.top = '70px';
+          } else {
+            eyesImg.style.width = '180px';
+            eyesImg.style.height = '115px';
+            eyesImg.style.left = '75px';
+            eyesImg.style.top = '125px';
+          }
+        } else if (eyesImg.src.includes('sport')) {
+          if (currentCat.includes('zazu.png')) {
+            eyesImg.style.width = '254px';
+            eyesImg.style.height = '174px';
+            eyesImg.style.left = '60px';
+            eyesImg.style.top = '79px';
+          } else {
+            eyesImg.style.width = '224px';
+            eyesImg.style.height = '144px';
+            eyesImg.style.left = '48px';
+            eyesImg.style.top = '107px';
+          }
+        } else if (eyesImg.src.includes('clipart')) {
+          if (currentCat.includes('zazu.png')) {
+            eyesImg.style.width = '190px';
+            eyesImg.style.height = '60px';
+            eyesImg.style.left = '90px';
+            eyesImg.style.top = '133px';
+          } else {
+            eyesImg.style.width = '160px';
+            eyesImg.style.height = '50px';
+            eyesImg.style.left = '85px';
+            eyesImg.style.top = '155px';
+          }
+        } else if (eyesImg.src.includes('rbvajfl')) {
+          // rbvajfl doesn't have conditional positioning yet, keep current
+          eyesImg.style.width = '280px';
+          eyesImg.style.height = '120px';
+          eyesImg.style.left = '50px';
+          eyesImg.style.top = '95px';
+        }
+      }
+      
+      // Reposition hat if it's visible
+      if (hatImg && hatImg.style.display !== 'none' && hatImg.src) {
+        if (hatImg.src.includes('army-helmet')) {
+          if (currentCat.includes('zazu.png')) {
+            hatImg.style.width = '350px';
+            hatImg.style.height = '150px';
+            hatImg.style.left = '5px';
+            hatImg.style.top = '75px';
+          } else {
+            hatImg.style.width = '330px';
+            hatImg.style.height = '160px';
+            hatImg.style.left = '05px';
+            hatImg.style.top = '95px';
+          }
+        } else if (hatImg.src.includes('beanie')) {
+          if (currentCat.includes('zazu.png')) {
+            hatImg.style.width = '208px';
+            hatImg.style.height = '60px';
+            hatImg.style.left = '95px';
+            hatImg.style.top = '80px';
+          } else {
+            hatImg.style.width = '208px';
+            hatImg.style.height = '80px';
+            hatImg.style.left = '75px';
+            hatImg.style.top = '115px';
+          }
+        } else if (hatImg.src.includes('cowboy-hat')) {
+          if (currentCat.includes('zazu.png')) {
+            hatImg.style.width = '400px';
+            hatImg.style.height = '150px';
+            hatImg.style.left = '-10px';
+            hatImg.style.top = '35px';
+          } else {
+            hatImg.style.width = '390px';
+            hatImg.style.height = '150px';
+            hatImg.style.left = '-33px';
+            hatImg.style.top = '75px';
+          }
+        } else if (hatImg.src.includes('viking')) {
+          if (currentCat.includes('zazu.png')) {
+            hatImg.style.width = '300px';
+            hatImg.style.height = '145px';
+            hatImg.style.left = '35px';
+            hatImg.style.top = '15px';
+          } else {
+            hatImg.style.width = '300px';
+            hatImg.style.height = '195px';
+            hatImg.style.left = '15px';
+            hatImg.style.top = '20px';
+          }
+        } else if (hatImg.src.includes('maga-hat')) {
+          if (currentCat.includes('zazu.png')) {
+            hatImg.style.width = '220px';
+            hatImg.style.height = '140px';
+            hatImg.style.left = '75px';
+            hatImg.style.top = '25px';
+          } else {
+            hatImg.style.width = '190px';
+            hatImg.style.height = '100px';
+            hatImg.style.left = '65px';
+            hatImg.style.top = '75px';
+          }
+        } else if (hatImg.src.includes('yankees-hat')) {
+          if (currentCat.includes('zazu.png')) {
+            hatImg.style.width = '180px';
+            hatImg.style.height = '100px';
+            hatImg.style.left = '95px';
+            hatImg.style.top = '30px';
+          } else {
+            hatImg.style.width = '300px';
+            hatImg.style.height = '100px';
+            hatImg.style.left = '18px';
+            hatImg.style.top = '80px';
+          }
+        } else if (hatImg.src.includes('random-hat')) {
+          if (currentCat.includes('zazu.png')) {
+            hatImg.style.width = '400px';
+            hatImg.style.height = '150px';
+            hatImg.style.left = '-5px';
+            hatImg.style.top = '20px';
+          } else {
+            hatImg.style.width = '400px';
+            hatImg.style.height = '150px';
+            hatImg.style.left = '-30px';
+            hatImg.style.top = '45px';
+          }
+        }
+      }
+    }
+
     function resetZazu() {
-      document.getElementById('editor-zazu').src = 'zazu.png';
+      document.getElementById('editor-zazu').src = 'rigby.png';
       const zazuFrame = document.getElementById('zazu-frame');
       zazuFrame.classList.remove('bg-white');
       zazuFrame.classList.remove('bg-stonks');
@@ -925,11 +1355,13 @@
       extrasImg.alt = '';
       extrasImg.className = '';
       // Fix grid layout bug on reset
-      const grid = document.getElementById('editor-grid-items');
-      grid.style.display = 'none';
+      const catGrid = document.getElementById('cat-grid-items');
+      const bgGrid = document.getElementById('editor-grid-items');
+      catGrid.style.display = 'none';
+      bgGrid.style.display = 'none';
       setTimeout(() => {
-        grid.style.display = '';
-        grid.scrollTop = 0;
+        catGrid.style.display = 'flex';
+        catGrid.scrollTop = 0;
       }, 0);
     }
     function downloadZazu() {
@@ -961,8 +1393,9 @@
         if (!img || img.style.display === 'none') return null;
         const imgRect = img.getBoundingClientRect();
         const frameRect = frame.getBoundingClientRect();
-        const scaleX = size / frameRect.width;
-        const scaleY = size / frameRect.height;
+        // Use the inner frame dimensions (350x350) for scaling, not the outer wrapper
+        const scaleX = size / 350;
+        const scaleY = size / 350;
         return {
           x: (imgRect.left - frameRect.left) * scaleX,
           y: (imgRect.top - frameRect.top) * scaleY,
@@ -1026,8 +1459,14 @@
       const extrasImg = document.getElementById('editor-extras');
 
       bgPromise.then(() => {
-        // Draw Zazu (always full size, centered)
-        return drawImageIfSet(zazuImg);
+        // Draw Zazu using overlay positioning
+        if (zazuImg && zazuImg.src) {
+          const rect = getOverlayRect(zazuImg, frame);
+          if (rect) {
+            return drawImageIfSet(zazuImg, rect.x, rect.y, rect.w, rect.h);
+          }
+        }
+        return Promise.resolve();
       }).then(() => {
         // Draw hat overlay (if visible)
         if (hatImg && hatImg.style.display !== 'none' && hatImg.src) {
@@ -1057,10 +1496,10 @@
         const dataUrl = canvas.toDataURL('image/png');
         console.log('Canvas data URL:', dataUrl);
         const win = window.open();
-        win.document.write('<title>Your Zazu Image</title>');
+        win.document.write('<title>Your Rigby Image</title>');
         win.document.write('<div style="text-align:center;font-family:sans-serif;margin-top:24px;">');
         win.document.write('<p><b>Right-click the image to save or copy it.</b></p>');
-        win.document.write('<a href="' + dataUrl + '" download="zazu.png" style="display:inline-block;margin-bottom:16px;padding:8px 20px;background:#222;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Download Image</a><br>');
+        win.document.write('<a href="' + dataUrl + '" download="rigby.png" style="display:inline-block;margin-bottom:16px;padding:8px 20px;background:#222;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Download Image</a><br>');
         win.document.write('<img src="' + dataUrl + '" style="max-width:100%;display:block;margin:auto;border:2px solid #eee;border-radius:8px;">');
         win.document.write('</div>');
         win.document.close();
@@ -1070,11 +1509,13 @@
   <script>
     // Fix grid layout bug on initial page load
     window.addEventListener('DOMContentLoaded', function() {
-      const grid = document.getElementById('editor-grid-items');
-      grid.style.display = 'none';
+      const catGrid = document.getElementById('cat-grid-items');
+      const bgGrid = document.getElementById('editor-grid-items');
+      catGrid.style.display = 'none';
+      bgGrid.style.display = 'none';
       setTimeout(() => {
-        grid.style.display = '';
-        grid.scrollTop = 0;
+        catGrid.style.display = 'flex';
+        catGrid.scrollTop = 0;
       }, 0);
     });
   </script>
